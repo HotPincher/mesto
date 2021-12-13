@@ -1,0 +1,12 @@
+.profile__subtitle {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}

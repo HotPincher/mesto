@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./styles/index.css" />
+  <title>Mesto</title>
+</head>
+
+<body class="body">
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/logo.svg" alt="Логотип веб-ресурса" />
+    </header>
+    <hr class="divider-line">
+    <main class="content">
+      <section class="profile">
+        <div class="profile__item">
+          <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар пользователя" />
+          <div class="profile__about">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button class="button   profile__edit-button">
+              <img src="./images/edit.svg" alt="Редактировать профиль">
+            </button>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="button profile__add-button">
+          <img src="./images/add__account.svg" alt="Добавить аккаунт" />
+        </button>
+      </section>
+      <section class="elements" aria-label="Карточки мест с фотографиями">
+        <div class="elements__item">
+          <img class="elements__image" src="./images/card_1.jpg" alt="Карачаевск" />
+          <div class="elements__description">
+            <h2 class="elements__heading">Карачаевск</h2>
+            <img class="button elements__like-button" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+        <div class="elements__item">
+          <img class="elements__image" src="./images/card_2.jpg" alt="Гора Эльбрус" />
+          <div class="elements__description">
+            <h2 class="elements__heading">Гора Эльбрус</h2>
+            <img class="button elements__like-button" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+        <div class="elements__item">
+          <img class="elements__image" src="./images/card_3.jpg" alt="Домбай" />
+          <div class="elements__description">
+            <h2 class="elements__heading">Домбай</h2>
+            <img class="button elements__like-button" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+        <div class="elements__item">
+          <img class="elements__image" src="./images/card_2.jpg" alt="Гора Эльбрус" />
+          <div class="elements__description">
+            <h2 class="elements__heading">Гора Эльбрус</h2>
+            <img class="button elements__like-button" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+        <div class="elements__item">
+          <img class="elements__image" src="./images/card_3.jpg" alt="Домбай" />
+          <div class="elements__description">
+            <h2 class="elements__heading">Домбай</h2>
+            <img class="button elements__like-button" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+        <div class="elements__item">
+          <img class="elements__image" src="./images/card_1.jpg" alt="Карачаево-Черкессия" />
+          <div class="elements__description">
+            <h2 class="elements__heading">Карачаево-Черкессия</h2>
+            <img class="button elements__like-button" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy;2020 Mesto Russia</p>
+    </footer>
+  </div>
+</body>
+
+</html>

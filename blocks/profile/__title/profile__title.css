@@ -1,0 +1,13 @@
+.profile__title {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 114%;
+  color: #fff;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  align-self: baseline;
+}

@@ -1,10 +1,8 @@
 .elements__item {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr, auto);
   background-color: #fff;
   border-radius: 10px;
-  overflow: hidden;
 }

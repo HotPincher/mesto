@@ -1,7 +1,9 @@
 .elements__description {
-  width: 100%;
-  max-width: 246px;
+  grid-column: 1 / 2;
+  width: auto;
   margin: 25px 0 31px;
+  padding-left: 21px;
+  padding-right: 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

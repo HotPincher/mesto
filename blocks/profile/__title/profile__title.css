@@ -1,4 +1,5 @@
 .profile__title {
+  display: block;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
@@ -7,16 +8,16 @@
   color: #fff;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
+  margin: 0;
   margin-block-start: 0;
   margin-block-end: 0;
-  align-self: baseline;
+  justify-self: center;
   text-align: center;
 }
 
 @media (max-width: 675px) {
   .profile__title {
     grid-column: 2 / 3;
-    text-align: center;
   }
 }
 
@@ -24,5 +25,6 @@
   .profile__title {
     font-size: 27px;
     line-height: 100%;
+    margin: auto;
   }
 }

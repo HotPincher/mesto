@@ -1,0 +1,11 @@
+.cover__container {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 34px 36px 37px;
+  box-sizing: border-box;
+  max-width: 430px;
+  max-height: 330px;
+  margin: 0 auto;
+  margin-top: 195px;
+  position: relative;
+}

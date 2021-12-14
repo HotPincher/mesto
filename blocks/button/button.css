@@ -9,4 +9,5 @@
   border: 2px solid #ffffff;
   box-sizing: border-box;
   border-radius: 2px;
+  cursor: pointer;
 }

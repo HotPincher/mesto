@@ -1,0 +1,14 @@
+.cover__submit-button {
+  background-color: #000;
+  color: #fff;
+  width: 100%;
+  border: none;
+  padding: 14px 0 18px;
+  margin-top: 48px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+}

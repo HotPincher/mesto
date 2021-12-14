@@ -14,7 +14,7 @@ The following features have been implemented in this page:
 
 You may look into the website using the following link:
 
-[Travel Across Russia](https://hotpincher.github.io/mesto/index.html)
+[Mesto](https://hotpincher.github.io/mesto/index.html)
 
 
 Authored by Pavel Senchurov

@@ -11,6 +11,7 @@
 
 @media (max-width: 675px) {
   .profile__about {
+    grid-template-columns: 24px 1fr auto;
     margin: 22px 0 36px;
     width: 100%;
   }

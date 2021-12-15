@@ -1,4 +1,4 @@
-.cover__close-button {
+.popup__close-button {
   width: 32px;
   height: 32px;
   grid-row: 1 / 2;
@@ -6,12 +6,12 @@
   border: none;
 }
 
-.cover__close-button:hover {
+.popup__close-button:hover {
   border: none;
 }
 
 @media (max-width: 520px) {
-  .cover__close-button {
+  .popup__close-button {
     grid-column: 1 / 2;
     justify-self: end;
     width: 20px;

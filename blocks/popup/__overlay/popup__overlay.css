@@ -1,4 +1,4 @@
-.cover__overlay {
+.popup__overlay {
   max-width: 510px;
   width: 100%;
   margin: 0 auto;
@@ -12,7 +12,7 @@
 }
 
 @media (max-width: 520px) {
-  .cover__overlay {
+  .popup__overlay {
     max-width: 282px;
     margin-top: 155px;
     grid-template-columns: 1fr;

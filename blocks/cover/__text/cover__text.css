@@ -1,4 +1,5 @@
 .cover__text {
+  display: block;
   border: none;
   align-self: flex-start;
   font-family: Inter;
@@ -12,6 +13,7 @@
   padding: 0;
 }
 
-.cover__text:active {
+.cover__text:focus {
+  outline: none;
   border: none;
 }

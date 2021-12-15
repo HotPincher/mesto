@@ -7,6 +7,6 @@
   box-sizing: content-box;
 }
 
-.elements__active {
+.elements:enabled {
   background-color: #000;
 }

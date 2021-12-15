@@ -1,12 +1,9 @@
 .elements__like-button {
-  width: 22px;
-  height: 19px;
-  display: block;
-  margin: 0;
   margin-bottom: 2px;
   box-sizing: content-box;
+  background-color: #fff;
 }
 
-.elements:enabled {
-  background-color: #000;
+.elements__like-button:enabled {
+
 }

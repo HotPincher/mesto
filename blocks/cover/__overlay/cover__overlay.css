@@ -13,7 +13,7 @@
 
 @media (max-width: 520px) {
   .cover__overlay {
-    /* max-width: 320px; */
+    max-width: 282px;
     margin-top: 155px;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;

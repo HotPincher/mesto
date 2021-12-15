@@ -1,21 +1,22 @@
 .cover__container {
   background-color: #fff;
+  max-width: 430px;
+  width: 100%;
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   border-radius: 10px;
-  padding: 34px 36px 37px;
   box-sizing: border-box;
-  width: auto;
+  padding: 34px 36px 37px;
 }
 
 
 @media (max-width: 520px) {
   .cover__container {
-    /* margin: 0 19px; */
+    margin: 0 auto;
     grid-column: 1 / 2;
-    justify-self: end;
+    justify-self: stretch;
   }
 }

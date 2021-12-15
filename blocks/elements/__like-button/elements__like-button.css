@@ -3,4 +3,10 @@
   height: 19px;
   display: block;
   margin: 0;
+  margin-bottom: 2px;
+  box-sizing: content-box;
+}
+
+.elements__active {
+  background-color: #000;
 }

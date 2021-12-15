@@ -2,7 +2,7 @@
   max-width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, 1fr, auto);
+  grid-template-rows: repeat(2, auto);
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;

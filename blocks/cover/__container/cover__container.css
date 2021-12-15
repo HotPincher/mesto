@@ -15,8 +15,10 @@
 
 @media (max-width: 520px) {
   .cover__container {
+    max-width: 282px;
     margin: 0 auto;
     grid-column: 1 / 2;
     justify-self: stretch;
+    padding: 25px 24px 25px;
   }
 }

@@ -7,4 +7,13 @@
   margin-block-start: 0;
   margin-block-end: 0;
   margin-bottom: 24px;
+  padding-right: 64px;
+}
+
+
+@media (max-width: 520px) {
+  .cover__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
 }

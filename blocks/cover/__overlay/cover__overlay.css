@@ -1,0 +1,18 @@
+.cover__overlay {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 32px 1fr 32px;
+  grid-template-rows: 32px 1fr;
+  column-gap: 8px;
+  row-gap: 8px;
+  position: fixed;
+  margin-top: 155px;
+}
+
+@media (max-width: 520px) {
+  .cover__overlay {
+    grid-template-columns: auto;
+    margin: 0 19px;
+    margin-top: 155px;
+  }
+}

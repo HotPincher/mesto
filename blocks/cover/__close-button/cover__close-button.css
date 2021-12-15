@@ -1,0 +1,20 @@
+.cover__close-button {
+  width: 32px;
+  height: 32px;
+  grid-row: 1 / 2;
+  grid-column: 3 / 4;
+  border: none;
+}
+
+.cover__close-button:hover {
+  border: none;
+}
+
+@media (max-width: 520px) {
+  .cover__close-button {
+    grid-column: 1 / 2;
+    justify-self: end;
+    width: 20px;
+    height: 20px;
+  }
+}

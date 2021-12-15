@@ -1,25 +1,26 @@
 .profile__about {
+  min-width: 335px;
   justify-self: flex-start;
-  margin-left: 30px;
+  margin: 0 30px;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto ;
   grid-template-rows: auto auto;
   column-gap: 18px;
   row-gap: 16px;
 }
 
-
 @media (max-width: 675px) {
   .profile__about {
-    grid-template-columns: 24px 1fr auto;
+    grid-template-columns: 24px auto 24px;
+    min-width: auto;
     margin: 22px 0 36px;
     width: 100%;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .profile__about {
     column-gap: 10px;
-    row-gap: 14px;
+    row-gap: 10px;
   }
 }

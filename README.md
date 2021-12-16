@@ -15,7 +15,7 @@ The following features have been implemented in this page:
 
 You may look into the website using the following link:
 
-[Mesto](https://hotpincher.github.io/mesto/index.html)
+[Mesto](https://hotpincher.github.io/mesto-project/index.html)
 
 
 Authored by Pavel Senchurov

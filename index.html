@@ -11,26 +11,26 @@
 
 <body class="body">
   <div class="page">
-    <div class="popup popup_opened">
-      <div class="popup__structure-wrapper">
-        <img class="button popup__close-button" src="./images/close_button.svg" alt="Закрыть меню" />
-        <div class="popup__container">
-          <h3 class="popup__title">Редактировать профиль</h3>
-          <form name="profile-edit" class="popup__input">
-            <input class="popup__user-input" type="text" name="first-name" placeholder="Имя исследователя" />
-            <hr class="popup__line" />
-            <input class="popup__user-input" type="text" name="occupation" placeholder="Специализация" />
-            <hr class="popup__line" />
-            <button class="button popup__submit-button" type="submit">Сохранить</button>
-          </form>
-        </div>
-      </div>
-    </div>
     <header class="header">
       <img class="header__logo" src="./images/logo.svg" alt="Логотип веб-ресурса" />
     </header>
-    <hr class="divider-line" />
     <main class="content">
+      <hr class="divider-line" />
+      <div class="popup popup_opened">
+        <div class="popup__structure-wrapper">
+          <img class="button popup__close-button" src="./images/close_button.svg" alt="Закрыть меню" />
+          <div class="popup__container">
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <form name="profile-edit" class="popup__input">
+              <input class="popup__user-input" type="text" name="first-name" placeholder="Имя исследователя" />
+              <hr class="popup__line" />
+              <input class="popup__user-input" type="text" name="occupation" placeholder="Специализация" />
+              <hr class="popup__line" />
+              <button class="button popup__submit-button" type="submit">Сохранить</button>
+            </form>
+          </div>
+        </div>
+      </div>
       <section class="profile">
         <div class="profile__item">
           <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар пользователя" />

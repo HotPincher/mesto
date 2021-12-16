@@ -12,14 +12,14 @@
 <body class="body">
   <div class="page">
     <div class="popup popup_opened">
-      <div class="popup__overlay">
+      <div class="popup__structure-wrapper">
         <img class="button popup__close-button" src="./images/close_button.svg" alt="Закрыть меню" />
         <div class="popup__container">
           <h3 class="popup__title">Редактировать профиль</h3>
           <form name="profile-edit" class="popup__input">
-            <input class="popup__text" type="text" name="first-name" placeholder="Имя исследователя" />
+            <input class="popup__user-input" type="text" name="first-name" placeholder="Имя исследователя" />
             <hr class="popup__line" />
-            <input class="popup__text" type="text" name="occupation" placeholder="Специализация" />
+            <input class="popup__user-input" type="text" name="occupation" placeholder="Специализация" />
             <hr class="popup__line" />
             <button class="button popup__submit-button" type="submit">Сохранить</button>
           </form>
@@ -36,7 +36,7 @@
           <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар пользователя" />
           <div class="profile__about">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="button profile__edit-button">
+            <button class="button profile__edit-button" name="edit_profile">
               <img class="profile__button-icon" src="./images/edit.svg" alt="Редактировать профиль" />
             </button>
             <p class="profile__subtitle">Исследователь океана</p>
@@ -51,7 +51,7 @@
           <img class="elements__image" src="./images/image_carribean.jpg" alt="Фотография Карибского моря" />
           <div class="elements__description">
             <h2 class="elements__heading">Карибское море</h2>
-            <button class="button elements__like-button">
+            <button class="button elements__like-button" name="like_button">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>
@@ -60,7 +60,7 @@
           <img class="elements__image" src="./images/image_mariana.jpg" alt="Фотография Марианской впадины" />
           <div class="elements__description">
             <h2 class="elements__heading">Марианская впадина</h2>
-            <button class="button elements__like-button elements__like-button_active">
+            <button class="button elements__like-button elements__like-button_active" name="like_button">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>
@@ -69,7 +69,7 @@
           <img class="elements__image" src="./images/image_phillipines.jpg" alt="Фотография Филиппинского моря" />
           <div class="elements__description">
             <h2 class="elements__heading">Филиппинский архипелаг</h2>
-            <button class="button elements__like-button">
+            <button class="button elements__like-button" name="like_button">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>
@@ -78,7 +78,7 @@
           <img class="elements__image" src="./images/image_red-sea.jpg" alt="Фотография Красного моря" />
           <div class="elements__description">
             <h2 class="elements__heading">Красное море</h2>
-            <button class="button elements__like-button elements__like-button_active">
+            <button class="button elements__like-button elements__like-button_active" name="like_button">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>
@@ -87,7 +87,7 @@
           <img class="elements__image" src="./images/image_reef.jpg" alt="Фотография Большого Барьерного Рифа" />
           <div class="elements__description">
             <h2 class="elements__heading">Большой Барьерный Риф</h2>
-            <button class="button elements__like-button">
+            <button class="button elements__like-button" name="like_button">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>
@@ -96,7 +96,7 @@
           <img class="elements__image" src="./images/image_atlantics.jpg" alt="Фото Северная Атлантика" />
           <div class="elements__description">
             <h2 class="elements__heading">Северная Атлантика</h2>
-            <button class="button elements__like-button">
+            <button class="button elements__like-button" name="like_button">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>

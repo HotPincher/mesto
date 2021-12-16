@@ -1,8 +1,8 @@
-.popup__text {
+.popup__user-input {
   display: block;
   border: none;
   align-self: flex-start;
-  font-family: Inter;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -13,7 +13,8 @@
   padding: 0;
 }
 
-.popup__text:focus {
+.popup__user-input:focus {
   outline: none;
   border: none;
+  color: #000;
 }

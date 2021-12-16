@@ -8,9 +8,10 @@ The following features have been implemented in this page:
 
 * adaptive web layout
 * grid and flex layout
-* relative measurement units (including calc() function)
-* translation of links as hover animation effect
+* relative measurement units
+* hover effects on links
 * responsive opacity overlays
+* pop-up input element
 
 You may look into the website using the following link:
 

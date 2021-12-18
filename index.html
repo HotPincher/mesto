@@ -16,11 +16,11 @@
     </header>
     <main class="content">
       <section class="profile">
-        <div class="profile__item">
+        <div class="profile__wrapper">
           <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар пользователя" />
           <div class="profile__about">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button type="button" class="button profile__edit-button" name="edit_profile">
+            <button type="button" class="button profile__edit-button">
               <img class="profile__edit-button-icon" src="./images/edit.svg" alt="Редактировать профиль" />
             </button>
             <p class="profile__subtitle">Исследователь океана</p>
@@ -35,7 +35,7 @@
           <img class="elements__image" src="./images/image_carribean.jpg" alt="Фотография Карибского моря" />
           <div class="elements__description">
             <h2 class="elements__heading">Карибское море</h2>
-            <button type="button" class="button elements__like-button" name="like_button">
+            <button type="button" class="button elements__like-button">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>
@@ -44,7 +44,7 @@
           <img class="elements__image" src="./images/image_mariana.jpg" alt="Фотография Марианской впадины" />
           <div class="elements__description">
             <h2 class="elements__heading">Марианская впадина</h2>
-            <button type="button" class="button elements__like-button elements__like-button_active" name="like_button">
+            <button type="button" class="button elements__like-button elements__like-button_active">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>
@@ -53,7 +53,7 @@
           <img class="elements__image" src="./images/image_phillipines.jpg" alt="Фотография Филиппинского моря" />
           <div class="elements__description">
             <h2 class="elements__heading">Филиппинский архипелаг</h2>
-            <button type="button" class="button elements__like-button" name="like_button">
+            <button type="button" class="button elements__like-button">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>
@@ -62,7 +62,7 @@
           <img class="elements__image" src="./images/image_red-sea.jpg" alt="Фотография Красного моря" />
           <div class="elements__description">
             <h2 class="elements__heading">Красное море</h2>
-            <button type="button" class="button elements__like-button elements__like-button_active" name="like_button">
+            <button type="button" class="button elements__like-button elements__like-button_active">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>
@@ -71,7 +71,7 @@
           <img class="elements__image" src="./images/image_reef.jpg" alt="Фотография Большого Барьерного Рифа" />
           <div class="elements__description">
             <h2 class="elements__heading">Большой Барьерный Риф</h2>
-            <button type="button" class="button elements__like-button" name="like_button">
+            <button type="button" class="button elements__like-button">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>
@@ -80,7 +80,7 @@
           <img class="elements__image" src="./images/image_atlantics.jpg" alt="Фото Северная Атлантика" />
           <div class="elements__description">
             <h2 class="elements__heading">Северная Атлантика</h2>
-            <button type="button" class="button elements__like-button" name="like_button">
+            <button type="button" class="button elements__like-button">
               <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
             </button>
           </div>
@@ -103,7 +103,7 @@
             class="credentials__user-input" />
           <input type="text" name="occupation" value="Исследователь океана" placeholder="Специализация"
             class="credentials__user-input" />
-          <button type="submit" class="button credentials__submit-button">Сохранить</button>
+          <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сохранить</button>
         </form>
       </div>
     </div>

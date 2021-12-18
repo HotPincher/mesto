@@ -1,4 +1,4 @@
-.profile__item {
+.profile__wrapper {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 675px) {
-  .profile__item {
+  .profile__wrapper {
     flex-direction: column;
   }
 }

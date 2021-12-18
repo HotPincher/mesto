@@ -8,3 +8,9 @@
   align-items: flex-start;
   border-bottom: 1px rgba(84, 84, 84, .7) solid;
 }
+
+@media (max-width:420px) {
+  .header {
+  width: 100vw;
+  }  
+}

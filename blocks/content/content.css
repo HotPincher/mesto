@@ -3,3 +3,10 @@
   margin: 0 auto;
   padding-top: 40px;
 }
+
+
+@media (max-width:420px) {
+  .content {
+    padding: 40px 19px 0;
+  }  
+}

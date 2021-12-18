@@ -1,0 +1,12 @@
+.popup__button-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0;
+}
+
+@media (max-width: 520px) {
+  .popup__button-icon {
+    width: 20px;
+    height: 20px;
+  }
+}

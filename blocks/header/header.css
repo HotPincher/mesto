@@ -1,9 +1,10 @@
 .header {
   max-width: 880px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-
+  border-bottom: 1px rgba(84, 84, 84, .7) solid;
 }

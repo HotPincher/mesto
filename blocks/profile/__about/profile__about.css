@@ -1,5 +1,4 @@
 .profile__about {
-  min-width: 335px;
   justify-self: flex-start;
   margin: 0 26px;
   display: grid;
@@ -7,6 +6,7 @@
   grid-template-rows: auto auto;
   column-gap: 18px;
   row-gap: 7px;
+  overflow: hidden;
 }
 
 @media (max-width: 675px) {

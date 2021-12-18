@@ -2,9 +2,9 @@
   width: 24px;
   height: 24px;
   background-color: #000;  
+  border: solid 1px #fff;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
-  border: 1px solid #fff;
   margin-bottom: 0.5em;
   padding: 0;
   align-self: end;

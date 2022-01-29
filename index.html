@@ -31,83 +31,59 @@
         </button>
       </section>
       <section class="elements" aria-label="Карточки мест с фотографиями">
-        <div class="elements__item">
-          <img class="elements__image" src="./images/image_carribean.jpg" alt="Фотография Карибского моря" />
-          <div class="elements__description">
-            <h2 class="elements__heading">Карибское море</h2>
-            <button type="button" class="button elements__like-button">
-              <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
-            </button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img class="elements__image" src="./images/image_mariana.jpg" alt="Фотография Марианской впадины" />
-          <div class="elements__description">
-            <h2 class="elements__heading">Марианская впадина</h2>
-            <button type="button" class="button elements__like-button elements__like-button_active">
-              <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
-            </button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img class="elements__image" src="./images/image_phillipines.jpg" alt="Фотография Филиппинского моря" />
-          <div class="elements__description">
-            <h2 class="elements__heading">Филиппинский архипелаг</h2>
-            <button type="button" class="button elements__like-button">
-              <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
-            </button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img class="elements__image" src="./images/image_red-sea.jpg" alt="Фотография Красного моря" />
-          <div class="elements__description">
-            <h2 class="elements__heading">Красное море</h2>
-            <button type="button" class="button elements__like-button elements__like-button_active">
-              <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
-            </button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img class="elements__image" src="./images/image_reef.jpg" alt="Фотография Большого Барьерного Рифа" />
-          <div class="elements__description">
-            <h2 class="elements__heading">Большой Барьерный Риф</h2>
-            <button type="button" class="button elements__like-button">
-              <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
-            </button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img class="elements__image" src="./images/image_atlantics.jpg" alt="Фото Северная Атлантика" />
-          <div class="elements__description">
-            <h2 class="elements__heading">Северная Атлантика</h2>
-            <button type="button" class="button elements__like-button">
-              <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
-            </button>
-          </div>
-        </div>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy;2020 Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup">
-    <div class="popup__structure-wrapper">
-      <button type="button" class="button popup__close-button">
-        <img class="popup__close-button-icon" src="./images/close_button.svg" alt="Закрыть меню" />
+  <template id="elements__item-template">
+    <div class="elements__item">
+      <button id="elements__delete-button-template" class="button elements__delete-button">
+        <img class="elements__delete-image" src="./images/delete_button.svg" alt="Удалить" />
       </button>
-      <div class="popup__container">
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <form name="profile-edit" action="#" method="post" class="credentials">
-          <input type="text" name="first-name" placeholder="Имя исследователя"
-            class="credentials__user-input" />
-          <input type="text" name="occupation" placeholder="Специализация"
-            class="credentials__user-input" />
-          <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сохранить</button>
-        </form>
+      <img id="elements__image" class="elements__image" onerror="src = './images/no_available_image.jpg' " src="./images/no_available_image.jpg" alt="#" />
+      <div class="elements__description">
+        <h2 id="elements__heading" class="elements__heading"></h2>
+        <button id="elements__like-button" type="button" class="button elements__like-button">
+          <img class="elements__like-image" src="./images/like.svg" alt="Лайк" />
+        </button>
       </div>
     </div>
-  </div>
+  </template>
+  <template id="popup-template">
+    <div class="popup">
+      <div class="popup__structure-wrapper">
+        <button type="button" class="button popup__close-button">
+          <img class="popup__close-button-icon" src="./images/close_button.svg" alt="Закрыть меню" />
+        </button>
+        <div class="popup__container">
+          <h3 class="popup__title"></h3>
+          <form name="profile-edit" class="credentials">
+            <input id="person-name" type="text" name="first-name" placeholder="Имя исследователя" 
+              class="credentials__user-input" />
+            <input id="person-occupation" type="text" name="occupation" placeholder="Специализация"
+               class="credentials__user-input" />
+            <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="big-picture-template">
+    <div class="big-picture">
+      <div class="big-picture__structure-wrapper">
+        <button type="button" class="button big-picture__close-button">
+          <img class="big-picture__close-button-image" src="./images/close_button.svg" alt="Закрыть фото" />
+        </button>
+        <div class="big-picture__container">
+          <img class="big-picture__image" onerror="src = './images/no_available_image.jpg'" src="#" alt="#">
+          <span class="big-picture__tag"></span>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script src="./scripts/script.js" defer></script>
 </body>
 
 </html>

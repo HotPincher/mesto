@@ -1,5 +1,4 @@
-.popup {
-  display: flex;
+.big-picture {
   max-width: 880px;
   max-height: 100%;
   margin: 0 auto;
@@ -8,7 +7,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;

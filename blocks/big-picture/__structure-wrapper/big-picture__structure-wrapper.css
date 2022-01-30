@@ -12,11 +12,9 @@
 
 @media (max-width: 520px) {
   .big-picture__structure-wrapper {
-    max-width: 282px;
-    grid-template-columns: 1fr;
+    min-width: 75vw;
+    grid-template-columns: auto;
     grid-template-rows: auto 1fr;
-    column-gap: 0;
-    margin-left: 16px;
-    margin-right: 16px;
+    max-width: 75vw;
   }
 }

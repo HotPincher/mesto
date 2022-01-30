@@ -13,8 +13,7 @@
 
 @media (max-width: 520px) {
   .big-picture__container {
-    margin: 0 auto;
     grid-column: 1 / 2;
-    justify-self: center;
+    width: 100%;
   }
 }

@@ -16,5 +16,6 @@
     grid-template-columns: auto;
     grid-template-rows: auto 1fr;
     max-width: 75vw;
+    margin: 0 auto;
   }
 }

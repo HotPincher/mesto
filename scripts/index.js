@@ -30,17 +30,15 @@ function renderElementCard (heading) {
   cardContainer.prepend(cardCreator)
 
   const cardRemover = cardCreator.querySelector('.elements__delete-button')
-  cardRemover.addEventListener('click', function(evt) {
-    evt.target.closest('.elements__item').remove()
-  })
+  cardRemover.addEventListener('click', evt => {evt.target.closest('.elements__item').remove()})
 
   const cardLikeButton = cardCreator.querySelector('.elements__like-button')
-  cardLikeButton.addEventListener('click', function (evt) {
+  cardLikeButton.addEventListener('click', evt => {
     evt.target.closest('.elements__like-button').classList.toggle('elements__like-button_active')
   })
 
   const bigPicturePopup = document.querySelector('.big-picture')
-  cardCreatorImageElement.addEventListener('click', function () {
+  cardCreatorImageElement.addEventListener('click', () => {
     const bigPicturePopupImage = bigPicturePopup.querySelector('.big-picture__image')
     bigPicturePopupImage.setAttribute('src', heading['link'])
     const bigPicturePopupSpan = bigPicturePopup.querySelector('.big-picture__tag')
@@ -50,7 +48,7 @@ function renderElementCard (heading) {
   })
 
   const bigPictureRemover = document.querySelector('.big-picture__close-button')
-  bigPictureRemover.addEventListener('click', function() {
+  bigPictureRemover.addEventListener('click', () => {
     bigPicturePopup.classList.remove('big-picture_animation-on')
     bigPicturePopup.classList.add('big-picture_animation-out')
   })
@@ -102,7 +100,7 @@ profileEditButton.addEventListener('click', function() {
   profileEditFormInitialValue2.setAttribute('placeholder', popupFormPlaceholder[0]['inputTwo'])
 })
 
-profileEditFormCredentials.addEventListener('submit', function(evt){
+profileEditFormCredentials.addEventListener('submit', evt => {
   evt.preventDefault()
   const pendingInputValue1 = evt.target.querySelector('#formInitialValue1').value
   currentAccountName.textContent = pendingInputValue1
@@ -114,7 +112,7 @@ profileEditFormCredentials.addEventListener('submit', function(evt){
   popupAccountEditModifier.classList.add('popup_animation-out')
 })
 
-profileEditCloseButton.addEventListener('click', function() {
+profileEditCloseButton.addEventListener('click', () => {
   popupAccountEditModifier.classList.remove('popup_animation-on')
   popupAccountEditModifier.classList.add('popup_animation-out')
   })
@@ -123,7 +121,7 @@ profileEditCloseButton.addEventListener('click', function() {
 // New Card button activating popup and submit button closing popup
 
 
-newCardCreatorButton.addEventListener('click', function() {
+newCardCreatorButton.addEventListener('click', () => {
   popupAccountNewCardModifier.classList.remove('popup_animation-out')
   popupAccountNewCardModifier.classList.add('popup_animation-on')
   popupNewCardFormTitleCurrent.textContent = popupTitle[1]
@@ -131,7 +129,7 @@ newCardCreatorButton.addEventListener('click', function() {
   profileNewCardFormInitialValue2.setAttribute('placeholder', popupFormPlaceholder[1]['inputTwo'])
 })
   
-profileNewCardFormCredentials.addEventListener('submit', function(evt){
+profileNewCardFormCredentials.addEventListener('submit', evt => {
   evt.preventDefault()
   let newCardInputValue1 = evt.target.querySelector('#newCardValue1')
   let newCardInputValue2 = evt.target.querySelector('#newCardValue2')
@@ -144,7 +142,7 @@ profileNewCardFormCredentials.addEventListener('submit', function(evt){
   popupAccountNewCardModifier.classList.add('popup_animation-out')
 })  
   
-profileNewCardCloseButton.addEventListener('click', function() {
+profileNewCardCloseButton.addEventListener('click', () => {
   popupAccountNewCardModifier.classList.remove('popup_animation-on')
   popupAccountNewCardModifier.classList.add('popup_animation-out')
   })  

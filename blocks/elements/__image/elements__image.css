@@ -1,4 +1,10 @@
 .elements__image {
   display: block;
+  height: 100%;
+  width: max-content;
+  min-width: 282px;
+  min-height: 282px;
+  aspect-ratio: 1 / 1;
   width: 100%;
+  overflow: hidden;
 }

@@ -3,3 +3,10 @@
   height: 32px;
   margin: 0;
 }
+
+@media (max-width: 520px) {
+  .big-picture__close-button-image {
+    width: 20px;
+    height: 20px;
+  }
+}

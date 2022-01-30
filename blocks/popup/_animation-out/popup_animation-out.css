@@ -1,16 +1,16 @@
 @keyframes fade-out {
   from {
     visibility: visible;
-    opacity: 1;
+    opacity: .9;
   }
   to {
-    opacity: .1;
+    /* opacity: .5; */
     visibility: hidden;
-    /* opacity: 0; */
+    opacity: 0;
   }
 }
 
-.elements__item_faded {
+.popup_animation-out {
   animation: fade-out .3s linear;
   visibility: hidden;
 }

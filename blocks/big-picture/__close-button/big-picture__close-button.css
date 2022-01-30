@@ -7,3 +7,12 @@
   width: 32px;
   height: 32px;
 }
+
+@media (max-width: 520px) {
+  .big-picture__close-button {
+    grid-column: 1 / 2;
+    justify-self: end;
+    width: 20px;
+    height: 20px;
+  }
+}

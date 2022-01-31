@@ -19,11 +19,11 @@
         <div class="profile__wrapper">
           <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар пользователя" />
           <div class="profile__about">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__title">Pavel Senchurov</h1>
             <button type="button" class="button profile__edit-button">
               <img class="profile__edit-button-icon" src="./images/edit.svg" alt="Редактировать профиль" />
             </button>
-            <p class="profile__subtitle">Исследователь океана</p>
+            <p class="profile__subtitle">Programmer</p>
           </div>
         </div>
         <button type="button" class="button profile__add-button">
@@ -42,7 +42,7 @@
       <button id="elements__delete-button-template" class="button elements__delete-button">
         <img class="elements__delete-image" src="./images/delete_button.svg" alt="Удалить" />
       </button>
-      <img id="elements__image" class="elements__image" onerror="src = './images/no-image.jpg' " src="./images/no-image.png" alt="#" />
+      <img id="elements__image" class="elements__image" onerror="src = './images/no-image.jpg' " src="#" alt="#" />
       <div class="elements__description">
         <h2 id="elements__heading" class="elements__heading"></h2>
         <button id="elements__like-button" type="button" class="button elements__like-button">
@@ -51,42 +51,6 @@
       </div>
     </div>
   </template>
-  <!-- <template id="popup-template">
-    <div class="popup">
-      <div class="popup__structure-wrapper">
-        <button type="button" class="button popup__close-button">
-          <img class="popup__close-button-icon" src="./images/close_button.svg" alt="Закрыть меню" />
-        </button>
-        <div class="popup__container">
-          <h3 class="popup__title"></h3>
-          <form name="profile-edit" class="credentials">
-            <input id="person-name" type="text" name="first-name" placeholder="Имя исследователя" 
-              class="credentials__user-input" />
-            <input id="person-occupation" type="text" name="occupation" placeholder="Специализация"
-               class="credentials__user-input" />
-            <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сохранить</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </template> -->
-  <div id="profileEditPopup" class="popup">
-    <div class="popup__structure-wrapper">
-      <button type="button" class="button popup__close-button">
-        <img class="popup__close-button-icon" src="./images/close_button.svg" alt="Закрыть меню" />
-      </button>
-      <div class="popup__container">
-        <h3 class="popup__title"></h3>
-        <form name="profile-edit" class="credentials">
-          <input id="formInitialValue1" type="text" name="first-name" placeholder="#" 
-            class="credentials__user-input" />
-          <input id="formInitialValue2" type="text" name="occupation" placeholder="#"
-             class="credentials__user-input" />
-          <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сохранить</button>
-        </form>
-      </div>
-    </div>
-  </div>
   <div id="newCardPopup" class="popup">
     <div class="popup__structure-wrapper">
       <button type="button" class="button popup__close-button">
@@ -104,22 +68,26 @@
       </div>
     </div>
   </div>
-  <!-- <template id="big-picture-template">
-    <div class="big-picture">
-      <div class="big-picture__structure-wrapper">
-        <button type="button" class="button big-picture__close-button">
-          <img class="big-picture__close-button-image" src="./images/close_button.svg" alt="Закрыть фото" />
-        </button>
-        <div class="big-picture__container">
-          <img class="big-picture__image" onerror="src = './images/no-image.jpg'" src="#" alt="#">
-          <span class="big-picture__tag"></span>
-        </div>
+  <div id="profileEditPopup" class="popup">
+    <div class="popup__structure-wrapper">
+      <button type="button" class="button popup__close-button">
+        <img class="popup__close-button-icon" src="./images/close_button.svg" alt="Закрыть меню" />
+      </button>
+      <div class="popup__container">
+        <h3 class="popup__title"></h3>
+        <form name="profile-edit" class="credentials">
+          <input id="formInitialValue1" type="text" name="first-name" placeholder="#" 
+            class="credentials__user-input" />
+          <input id="formInitialValue2" type="text" name="occupation" placeholder="#"
+             class="credentials__user-input" />
+          <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сохранить</button>
+        </form>
       </div>
     </div>
-  </template> -->
-  <div class="big-picture">
+  </div>
+  <div id="big-picture-popup" class="popup">
     <div class="big-picture__structure-wrapper">
-      <button type="button" class="button big-picture__close-button">
+      <button type="button" class="button popup__close-button big-picture__close-button">
         <img class="big-picture__close-button-image" src="./images/close_button.svg" alt="Закрыть фото" />
       </button>
       <div class="big-picture__container">

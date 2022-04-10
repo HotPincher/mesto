@@ -1,0 +1,5 @@
+.profile__avatar-swapper_active {
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 5px 5px 5px 5px black;
+  transition: all 0.3s linear;
+}

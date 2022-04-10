@@ -1,0 +1,12 @@
+.elements__description {
+  grid-column: 1 / 2;
+  width: auto;
+  margin: 25px 0 30px;
+  padding-left: 21px;
+  padding-right: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  overflow: hidden;
+}

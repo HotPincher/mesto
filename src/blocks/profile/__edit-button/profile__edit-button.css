@@ -1,0 +1,32 @@
+.profile__edit-button {
+  width: 24px;
+  height: 24px;
+  background-color: #000;  
+  border: solid 1px #fff;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  margin-bottom: 0.5em;
+  padding: 0;
+  align-self: end;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box;
+
+}
+
+@media (max-width: 675px) {
+  .profile__edit-button {
+    grid-column: 3 / 4;
+  }
+}
+
+@media (max-width: 420px) {
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    margin: auto;
+    margin-top: 6px;
+  }
+}

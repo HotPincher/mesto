@@ -1,9 +1,0 @@
-.button {
-  box-sizing: border-box;
-  border-radius: 2px;
-}
-
-.button:hover {
-  cursor: pointer;
-  opacity: 0.6;
-}

@@ -143,9 +143,9 @@ import {
     profileNewCardFormCredentials.reset()
   })
   
-  document.onerror = function () {
-    document.querySelector('.elements__image').setAttribute('src', './src/images/no-image.jpg')
-  }
+  // document.onerror = function () {
+  //   document.querySelector('.elements__image').setAttribute('src', './src/images/no-image.jpg')
+  // }
 
   popupAccountNewCardModifier.querySelector('.popup__close-button').addEventListener('click', () => {
     removePopup(popupAccountNewCardModifier)

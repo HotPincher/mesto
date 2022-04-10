@@ -11,7 +11,10 @@ The following features have been implemented in this page:
 * relative measurement units
 * hover effects on links
 * responsive opacity overlays
-* pop-up input element
+* JavaScript functionality
+* pop-up input elements
+* webpack
+
 
 You may look into the website using the following link:
 

@@ -11,17 +11,18 @@
 <body class="body">
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип веб-ресурса" >
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип веб-ресурса">
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__wrapper">
           <div class="profile__avatar-overlay">
             <button type="button" class="profile__avatar-swapper">
-              <svg class="profile__avatar-swapper-icon" width="26" height="26" viewbox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="profile__avatar-swapper-icon" width="26" height="26" viewbox="0 0 26 26" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M26 3.45351L6.76981 22.7932L3.33585 19.2903L22.517 0L26 3.45351ZM0 26L5.10189 24.4706L1.52075 21.0171L0 26Z"
-                  fill="currentcolor"/>
+                  fill="currentcolor" />
               </svg>
             </button>
           </div>
@@ -49,7 +50,7 @@
       <button id="elements__delete-button-template" class="button elements__delete-button">
         <img class="elements__delete-image" src="<%=require('./images/delete_button.svg')%>" alt="Удалить" />
       </button>
-      <img id="elements__image" class="elements__image"  src="#" alt="#" />
+      <img id="elements__image" class="elements__image" src="#" alt="#" />
       <div class="elements__description">
         <h2 id="elements__heading" class="elements__heading"></h2>
         <button id="elements__like-button" type="button" class="button elements__like-button">
@@ -102,8 +103,7 @@
       <div class="popup__container">
         <h3 class="popup__title">#</h3>
         <form name="avatar-edit" class="credentials" novalidate>
-          <input id="avatar-input" class="credentials__user-input" type="url" name="avatar" placeholder="#" value=" "
-           required />
+          <input id="avatar-input" class="credentials__user-input" type="url" name="avatar" placeholder="#" value=" " required />
           <span class="credentials__input-error credentials__input-error_upper avatar-input-error"></span>
           <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сохранить</button>
         </form>
@@ -113,7 +113,8 @@
   <div id="big-picture-popup" class="popup">
     <div class="big-picture__structure-wrapper">
       <button type="button" class="button popup__close-button">
-        <img class="big-picture__close-button-image" src="<%=require('./images/close_button.svg')%>" alt="Закрыть фото" />
+        <img class="big-picture__close-button-image" src="<%=require('./images/close_button.svg')%>"
+          alt="Закрыть фото" />
       </button>
       <div class="big-picture__container">
         <img class="big-picture__image" src="#" alt="Крупное фото с карточки">

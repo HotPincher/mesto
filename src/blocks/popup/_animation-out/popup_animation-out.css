@@ -1,7 +1,7 @@
 @keyframes fade-out {
   from {
     visibility: visible;
-    opacity: .9;
+    opacity: .5;
   }
   to {
     visibility: hidden;

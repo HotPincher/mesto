@@ -1,18 +1,20 @@
+import marianna from '../images/image_mariana.jpg'
+import philippines from '../images/image_phillipines.jpg'
+import redSea from '../images/image_red-sea.jpg'
+import bigBarrierReef from '../images/image_reef.jpg'
+import northAtlantics from '../images/image_atlantics.jpg'
+import carribean from '../images/image_carribean.jpg'
+
 export {
   cardContentTitles,
-  popupTitle,
-  popupFormPlaceholder,
   currentAccountName,
   currentAccountProfession,
   profileEditButton,
   avatarEditButton,
   newCardCreatorButton,
   popupAccountEditModifier,
-  popupEditAccountFormTitleCurrent,
   popupAvatarEditModifier,
-  popupAvatarFormTitleCurrent,
   popupAccountNewCardModifier,
-  popupNewCardFormTitleCurrent,
   cardContainer,
   cardFromTemplate,
   bigPicturePopup,
@@ -26,24 +28,17 @@ export {
   newCardPlace,
   newCardUrl,
   avatarUrl,
+  avatarImage,
+  validationSettings,
 }
 
 const cardContentTitles = [
-  { title: 'Марианская впадина', link: '../src/images/image_mariana.jpg' },
-  { title: 'Филиппинский архипелаг', link: '../src/images/image_phillipines.jpg' },
-  { title: 'Красное море', link: '../src/images/image_red-sea.jpg' },
-  { title: 'Большой Барьерный Риф', link: '../src/images/image_reef.jpg' },
-  { title: 'Северная Атлантика', link: '../src/images/image_atlantics.jpg' },
-  { title: 'Карибское море', link: '../src/images/image_carribean.jpg' },
-]
-
-const popupTitle =
-  ['Редактировать профиль', 'Новое место', 'Обновить аватар']
-
-const popupFormPlaceholder = [
-  { inputOne: 'Имя исследователя', inputTwo: 'Профессия' },
-  { inputOne: 'Название', inputTwo: 'Ссылка на картинку' },
-  { inputOne: 'Ссылка на аватар'},
+  { title: 'Марианская впадина', link: marianna },
+  { title: 'Филиппинский архипелаг', link: philippines },
+  { title: 'Красное море', link: redSea },
+  { title: 'Большой Барьерный Риф', link: bigBarrierReef },
+  { title: 'Северная Атлантика', link: northAtlantics },
+  { title: 'Карибское море', link: carribean },
 ]
 
 // PAGE LAYOUT
@@ -60,17 +55,15 @@ const newCardCreatorButton = document.querySelector('.profile__add-button')
 // EDITING PROFILE POPUP
 
 const popupAccountEditModifier = document.querySelector('#profileEditPopup')
-const popupEditAccountFormTitleCurrent = popupAccountEditModifier.querySelector('.popup__title')
 
 // EDITING AVATAR
 
 const popupAvatarEditModifier = document.querySelector('#avatarEditPopup')
-const popupAvatarFormTitleCurrent = popupAvatarEditModifier.querySelector('.popup__title')
+const avatarImage = document.querySelector('.profile__avatar-overlay')
 
 // NEW CARD POPUP
 
 const popupAccountNewCardModifier = document.querySelector('#newCardPopup')
-const popupNewCardFormTitleCurrent = popupAccountNewCardModifier.querySelector('.popup__title')
 
 // ADDING A NEW CARD
 
@@ -88,12 +81,20 @@ const bigPicturePopupSpan = bigPicturePopup.querySelector('.big-picture__tag')
 const profileEditFormCredentials = document.forms['profile-edit']
 const profileNewCardFormCredentials = document.forms['card-edit']
 const profileAvatarEditFormCredentials = document.forms['avatar-edit']
-
 const profileEditFormInitialValue1 = profileEditFormCredentials.querySelector('#name-input')
 const profileEditFormInitialValue2 = profileEditFormCredentials.querySelector('#description-input')
-
 const newCardPlace = document.querySelector('#place-input')
 const newCardUrl = document.querySelector('#url-input')
-
 const avatarUrl = document.querySelector('#avatar-input')
+
+// FORM VALIDATION OBJECT
+
+const validationSettings = {
+  formSelector: '.credentials',
+  inputSelector: '.credentials__user-input',
+  submitButtonSelector: '.credentials__submit-button',
+  inactiveButtonClass: 'credentials__submit-button_disabled',
+  inputErrorClass: 'credentials__user-input_invalid',
+  inputErrorHiddenClass: 'credentials__input-error_hidden',
+}
 

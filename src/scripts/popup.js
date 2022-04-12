@@ -1,30 +1,30 @@
 import { enableValidation } from './validateForm.js'
 
 const activatePopup = popup => {
-  popup.classList.remove('popup_animation-out')
-  popup.classList.add('popup_animation-on')
+  popup.classList.remove('popup_closed')
+  popup.classList.add('popup_opened')
   enableValidation()
   document.addEventListener('keydown', removePopupByEsc)
   document.addEventListener('click', removePopupByOverlay)
 }
 
 const removePopup = popup => {
-  popup.classList.remove('popup_animation-on')
-  popup.classList.add('popup_animation-out')
+  popup.classList.add('popup_closed')
+  popup.classList.remove('popup_opened')
   document.removeEventListener('keydown', removePopupByEsc)
   document.removeEventListener('click', removePopupByOverlay)
 }
 
 const removePopupByEsc = (evt) => {
   if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_animation-on')
+    const openedPopup = document.querySelector('.popup_opened')
     removePopup(openedPopup)
   }
 }  
 
 const removePopupByOverlay = (evt) => {
-  if (evt.target.classList.contains('popup_animation-on')) {
-    const openedPopup = document.querySelector('.popup_animation-on')
+  if (evt.target.classList.contains('popup_opened')) {
+    const openedPopup = document.querySelector('.popup_opened')
     removePopup(openedPopup)
   }
 }
@@ -42,4 +42,9 @@ const resetPopup = (formElement) => {
   })
 }
 
-export {activatePopup, removePopup, removePopupByEsc, removePopupByOverlay, resetPopup}
+const disableSubmit = (submitElement) => {
+  submitElement.querySelector('.credentials__submit-button').classList.add('credentials__submit-button_disabled');
+  submitElement.querySelector('.credentials__submit-button').setAttribute('disabled', 'true')
+}
+
+export {activatePopup, removePopup, removePopupByEsc, removePopupByOverlay, resetPopup, disableSubmit}

@@ -1,3 +1,15 @@
+@keyframes fade-in {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: .5;
+  }
+}
+
 .popup_opened {
-  display: none;
+  animation: fade-in .3s linear;
+  visibility: visible;
 }

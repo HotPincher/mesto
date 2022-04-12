@@ -9,7 +9,6 @@
   }
 }
 
-.popup_animation-out {
+.popup_closed {
   animation: fade-out .3s linear;
-  visibility: hidden;
 }

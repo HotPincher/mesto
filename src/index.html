@@ -17,7 +17,7 @@
       <section class="profile">
         <div class="profile__wrapper">
           <div class="profile__avatar-overlay">
-            <button type="button" class="profile__avatar-swapper">
+            <button type="button" class="button profile__avatar-swapper">
               <svg class="profile__avatar-swapper-icon" width="26" height="26" viewbox="0 0 26 26" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -71,7 +71,7 @@
           <span class="credentials__input-error credentials__input-error_upper place-input-error"></span>
           <input id="url-input" type="url" name="url" placeholder="Ссылка на картинку" class="credentials__user-input" required />
           <span class="credentials__input-error credentials__input-error_lower url-input-error"></span>
-          <button type="submit" class="button credentials__submit-button" name="submit-credentials">Создать</button>
+          <button type="submit" disabled class="button credentials__submit-button" name="submit-credentials">Создать</button>
         </form>
       </div>
     </div>
@@ -103,7 +103,7 @@
       <div class="popup__container">
         <h3 class="popup__title">Обновить аватар</h3>
         <form name="avatar-edit" class="credentials" novalidate>
-          <input id="avatar-input" class="credentials__user-input" type="url" name="avatar" placeholder="Ссылка на аватар" value=" " required />
+          <input id="avatar-input" class="credentials__user-input" type="url" name="avatar" placeholder="Ссылка на аватар" value="" required />
           <span class="credentials__input-error credentials__input-error_upper avatar-input-error"></span>
           <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сохранить</button>
         </form>
@@ -113,8 +113,7 @@
   <div id="big-picture-popup" class="popup">
     <div class="big-picture__structure-wrapper">
       <button type="button" class="button popup__close-button">
-        <img class="popup__close-button-icon" src="<%=require('./images/close_button.svg')%>"
-          alt="Закрыть фото" />
+        <img class="popup__close-button-icon" src="<%=require('./images/close_button.svg')%>" alt="Закрыть фото" />
       </button>
       <div class="big-picture__container">
         <img class="big-picture__image" src="#" alt="Крупное фото с карточки">

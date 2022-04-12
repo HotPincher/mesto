@@ -1,9 +1,8 @@
 import './styles/index.css';
 import { enableValidation } from './scripts/validateForm.js'
 import { renderElements, addCard } from './scripts/renderCard.js'
-import { activatePopup, removePopup, removePopupByOverlay, resetPopup } from './scripts/popup.js'
+import { activatePopup, disableSubmit, removePopup, resetPopup } from './scripts/popup.js'
 import {
-  cardContentTitles,
   currentAccountName,
   currentAccountProfession,
   profileEditButton,
@@ -27,6 +26,7 @@ import {
 (function () {
   profileEditButton.addEventListener('click', () => {
     activatePopup(popupAccountEditModifier)
+    disableSubmit(popupAccountEditModifier)
     resetPopup(profileEditFormCredentials)
     profileEditFormInitialValue1.setAttribute('value', currentAccountName.textContent)
     profileEditFormInitialValue2.setAttribute('value', currentAccountProfession.textContent)
@@ -58,6 +58,7 @@ import {
 
   avatarEditButton.addEventListener('click', () => {
     activatePopup(popupAvatarEditModifier)
+    disableSubmit(popupAvatarEditModifier)
     resetPopup(profileAvatarEditFormCredentials)
   })
 
@@ -75,6 +76,7 @@ import {
 
   newCardCreatorButton.addEventListener('click', () => {
     activatePopup(popupAccountNewCardModifier)
+    disableSubmit(popupAccountNewCardModifier)
     resetPopup(profileNewCardFormCredentials)
   })
 

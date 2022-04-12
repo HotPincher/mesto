@@ -41,12 +41,6 @@ const renderElementCard = heading => {
   return cardCreator
 }
 
-// cardContainer.addEventListener('click', evt => {
-//   if (evt.target.classList.contains('elements__like-button')) {
-//     evt.target.classList.toggle('elements__like-button_active')
-//   }
-// })
-
 const addCard = (title, link) => {
   const cardCaller = renderElementCard(title, link)
   cardContainer.prepend(cardCaller)

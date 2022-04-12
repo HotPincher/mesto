@@ -1,5 +1,4 @@
 import './styles/index.css';
-import { enableValidation } from './scripts/validateForm.js'
 import { renderElements, addCard } from './scripts/renderCard.js'
 import { activatePopup, disableSubmit, removePopup, resetPopup } from './scripts/popup.js'
 import {
@@ -94,7 +93,6 @@ import {
   bigPicturePopup.querySelector('.popup__close-button').addEventListener('click', () => {
     removePopup(bigPicturePopup)
   })
-
-  enableValidation()
+  
   renderElements()
 })()

@@ -5,33 +5,6 @@ import bigBarrierReef from '../images/image_reef.jpg'
 import northAtlantics from '../images/image_atlantics.jpg'
 import carribean from '../images/image_carribean.jpg'
 
-export {
-  cardContentTitles,
-  currentAccountName,
-  currentAccountProfession,
-  profileEditButton,
-  avatarEditButton,
-  newCardCreatorButton,
-  popupAccountEditModifier,
-  popupAvatarEditModifier,
-  popupAccountNewCardModifier,
-  cardContainer,
-  cardFromTemplate,
-  bigPicturePopup,
-  bigPicturePopupImage,
-  bigPicturePopupSpan,
-  profileEditFormCredentials,
-  profileAvatarEditFormCredentials,
-  profileNewCardFormCredentials,
-  profileEditFormInitialValue1,
-  profileEditFormInitialValue2,
-  newCardPlace,
-  newCardUrl,
-  avatarUrl,
-  avatarImage,
-  validationSettings,
-}
-
 const cardContentTitles = [
   { title: 'Марианская впадина', link: marianna },
   { title: 'Филиппинский архипелаг', link: philippines },
@@ -98,3 +71,29 @@ const validationSettings = {
   inputErrorHiddenClass: 'credentials__input-error_hidden',
 }
 
+export {
+  cardContentTitles,
+  currentAccountName,
+  currentAccountProfession,
+  profileEditButton,
+  avatarEditButton,
+  newCardCreatorButton,
+  popupAccountEditModifier,
+  popupAvatarEditModifier,
+  popupAccountNewCardModifier,
+  cardContainer,
+  cardFromTemplate,
+  bigPicturePopup,
+  bigPicturePopupImage,
+  bigPicturePopupSpan,
+  profileEditFormCredentials,
+  profileAvatarEditFormCredentials,
+  profileNewCardFormCredentials,
+  profileEditFormInitialValue1,
+  profileEditFormInitialValue2,
+  newCardPlace,
+  newCardUrl,
+  avatarUrl,
+  avatarImage,
+  validationSettings,
+}

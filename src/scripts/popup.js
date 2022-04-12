@@ -3,7 +3,6 @@ import { enableValidation } from './validateForm.js'
 const activatePopup = popup => {
   popup.classList.remove('popup_closed')
   popup.classList.add('popup_opened')
-  enableValidation()
   document.addEventListener('keydown', removePopupByEsc)
   document.addEventListener('click', removePopupByOverlay)
 }
@@ -24,8 +23,7 @@ const removePopupByEsc = (evt) => {
 
 const removePopupByOverlay = (evt) => {
   if (evt.target.classList.contains('popup_opened')) {
-    const openedPopup = document.querySelector('.popup_opened')
-    removePopup(openedPopup)
+    removePopup(evt.target)
   }
 }
 

@@ -4,14 +4,12 @@ const activatePopup = popup => {
   popup.classList.remove('popup_closed')
   popup.classList.add('popup_opened')
   document.addEventListener('keydown', removePopupByEsc)
-  document.addEventListener('click', removePopupByOverlay)
 }
 
 const removePopup = popup => {
   popup.classList.add('popup_closed')
   popup.classList.remove('popup_opened')
   document.removeEventListener('keydown', removePopupByEsc)
-  document.removeEventListener('click', removePopupByOverlay)
 }
 
 const removePopupByEsc = (evt) => {
@@ -20,12 +18,6 @@ const removePopupByEsc = (evt) => {
     removePopup(openedPopup)
   }
 }  
-
-const removePopupByOverlay = (evt) => {
-  if (evt.target.classList.contains('popup_opened')) {
-    removePopup(evt.target)
-  }
-}
 
 const resetPopup = (formElement) => {
   formElement.reset()
@@ -45,4 +37,4 @@ const disableSubmit = (submitElement) => {
   submitElement.querySelector('.credentials__submit-button').setAttribute('disabled', 'true')
 }
 
-export {activatePopup, removePopup, removePopupByEsc, removePopupByOverlay, resetPopup, disableSubmit}
+export {activatePopup, removePopup, resetPopup, removePopupByEsc, disableSubmit}

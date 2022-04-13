@@ -10,7 +10,7 @@ import {
   popupAccountEditModifier,
   popupAvatarEditModifier,
   popupAccountNewCardModifier,
-  bigPicturePopup,
+  popupRemovers,
   profileEditFormCredentials,
   profileAvatarEditFormCredentials,
   profileNewCardFormCredentials,
@@ -40,11 +40,6 @@ import {
     removePopup(popupAccountEditModifier)
   })
 
-  popupAccountEditModifier.querySelector('.popup__close-button').addEventListener('click', () => {
-    removePopup(popupAccountEditModifier)
-  })
-
-
   avatarEditButton.addEventListener('mouseover', function (evt) {
     evt.target.closest('.profile__avatar-swapper').classList.add('profile__avatar-swapper_active')
     document.querySelector('.profile__avatar-swapper-icon').classList.add('profile__avatar-swapper-icon_active')
@@ -61,15 +56,10 @@ import {
     resetPopup(profileAvatarEditFormCredentials)
   })
 
-
   profileAvatarEditFormCredentials.addEventListener('submit', evt => {
     evt.preventDefault()
     const newAvatar = { url: `${avatarUrl.value}` }
     avatarImage.style.backgroundImage = `url(${newAvatar.url})`;
-    removePopup(popupAvatarEditModifier)
-  })
-
-  popupAvatarEditModifier.querySelector('.popup__close-button').addEventListener('click', () => {
     removePopup(popupAvatarEditModifier)
   })
 
@@ -86,13 +76,12 @@ import {
     removePopup(popupAccountNewCardModifier)
   })
 
-  popupAccountNewCardModifier.querySelector('.popup__close-button').addEventListener('click', () => {
-    removePopup(popupAccountNewCardModifier)
+  popupRemovers.forEach(popup => {
+    popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) {
+        removePopup(popup)
+      }
+    })
   })
-
-  bigPicturePopup.querySelector('.popup__close-button').addEventListener('click', () => {
-    removePopup(bigPicturePopup)
-  })
-  
   renderElements()
 })()

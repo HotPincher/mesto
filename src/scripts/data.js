@@ -25,6 +25,10 @@ const profileEditButton = document.querySelector('.profile__edit-button')
 const avatarEditButton = document.querySelector('.profile__avatar-swapper')
 const newCardCreatorButton = document.querySelector('.profile__add-button')
 
+// POPUPS
+
+const popupRemovers = document.querySelectorAll('.popup')
+
 // EDITING PROFILE POPUP
 
 const popupAccountEditModifier = document.querySelector('#profileEditPopup')
@@ -78,6 +82,7 @@ export {
   profileEditButton,
   avatarEditButton,
   newCardCreatorButton,
+  popupRemovers, 
   popupAccountEditModifier,
   popupAvatarEditModifier,
   popupAccountNewCardModifier,

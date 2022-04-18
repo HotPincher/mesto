@@ -1,18 +1,10 @@
-import marianna from '../images/image_mariana.jpg'
-import philippines from '../images/image_phillipines.jpg'
-import redSea from '../images/image_red-sea.jpg'
-import bigBarrierReef from '../images/image_reef.jpg'
-import northAtlantics from '../images/image_atlantics.jpg'
-import carribean from '../images/image_carribean.jpg'
-
-const cardContentTitles = [
-  { title: 'Марианская впадина', link: marianna },
-  { title: 'Филиппинский архипелаг', link: philippines },
-  { title: 'Красное море', link: redSea },
-  { title: 'Большой Барьерный Риф', link: bigBarrierReef },
-  { title: 'Северная Атлантика', link: northAtlantics },
-  { title: 'Карибское море', link: carribean },
-]
+const serverConfig = {
+  baseUrl: "https://nomoreparties.co/v1/plus-cohort-8",
+  headers: {
+    "Authorization": "46fd1b2f-0142-4390-8d44-7cfab5387a15",
+    "Content-Type": "application/json"
+  }
+}
 
 // PAGE LAYOUT
 
@@ -76,13 +68,12 @@ const validationSettings = {
 }
 
 export {
-  cardContentTitles,
   currentAccountName,
   currentAccountProfession,
   profileEditButton,
   avatarEditButton,
   newCardCreatorButton,
-  popupRemovers, 
+  popupRemovers,
   popupAccountEditModifier,
   popupAvatarEditModifier,
   popupAccountNewCardModifier,
@@ -101,4 +92,5 @@ export {
   avatarUrl,
   avatarImage,
   validationSettings,
+  serverConfig,
 }

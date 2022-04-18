@@ -1,11 +1,7 @@
 .profile__avatar-overlay {
+  display: block;
   max-height: 120px;
   max-width: 120px;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background-image: url(../../../images/myavatar.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  height: 100%;
+  width: auto;
 }

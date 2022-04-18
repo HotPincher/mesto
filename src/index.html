@@ -16,7 +16,7 @@
     <main class="content">
       <section class="profile">
         <div class="profile__wrapper">
-          <div class="profile__avatar-overlay">
+          <div class="profile__avatar-wrapper">
             <button type="button" class="button profile__avatar-swapper">
               <svg class="profile__avatar-swapper-icon" width="26" height="26" viewbox="0 0 26 26" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -24,14 +24,16 @@
                   d="M26 3.45351L6.76981 22.7932L3.33585 19.2903L22.517 0L26 3.45351ZM0 26L5.10189 24.4706L1.52075 21.0171L0 26Z"
                   fill="currentcolor" />
               </svg>
+              <img class="profile__avatar-overlay" src="<%=require('./images/myavatar.jpg')%>" alt="Аватар пользователя">
             </button>
           </div>
           <div class="profile__about">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__title"></h1>
             <button type="button" class="button profile__edit-button">
-              <img class="profile__edit-button-icon" src="<%=require('./images/edit.svg')%>" alt="Редактировать профиль" />
+              <img class="profile__edit-button-icon" src="<%=require('./images/edit.svg')%>"
+                alt="Редактировать профиль" />
             </button>
-            <p class="profile__subtitle">Исследователь океанов</p>
+            <p class="profile__subtitle"></p>
           </div>
         </div>
         <button type="button" class="button profile__add-button">
@@ -53,8 +55,10 @@
       <img id="elements__image" class="elements__image" src="#" alt="#" />
       <div class="elements__description">
         <h2 id="elements__heading" class="elements__heading"></h2>
-        <button id="elements__like-button" type="button" class="button elements__like-button">
-        </button>
+        <div class="elements__like-wrapper">
+          <button id="elements__like-button" type="button" class="button elements__like-button"></button>
+          <p class="elements__like-counter">0</p>
+        </div>
       </div>
     </div>
   </template>
@@ -64,12 +68,14 @@
       <div class="popup__container">
         <h3 class="popup__title">Новое место</h3>
         <form name="card-edit" class="credentials" novalidate>
-          <input id="place-input" type="text" name="place" placeholder="Название" class="credentials__user-input" minlength="2"
-            maxlength="30" required />
+          <input id="place-input" type="text" name="place" placeholder="Название" class="credentials__user-input"
+            minlength="2" maxlength="30" required />
           <span class="credentials__input-error credentials__input-error_upper place-input-error"></span>
-          <input id="url-input" type="url" name="url" placeholder="Ссылка на картинку" class="credentials__user-input" required />
+          <input id="url-input" type="url" name="url" placeholder="Ссылка на картинку" class="credentials__user-input"
+            required />
           <span class="credentials__input-error credentials__input-error_lower url-input-error"></span>
-          <button type="submit" disabled class="button credentials__submit-button" name="submit-credentials">Создать</button>
+          <button type="submit" disabled class="button credentials__submit-button"
+            name="submit-credentials">Создать</button>
         </form>
       </div>
     </div>
@@ -80,11 +86,11 @@
       <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
         <form name="profile-edit" class="credentials" novalidate>
-          <input id="name-input" class="credentials__user-input" type="text" name="first-name" placeholder="Имя исследователя" value="#"
-            minlength="2" maxlength="40" required />
+          <input id="name-input" class="credentials__user-input" type="text" name="first-name"
+            placeholder="Имя исследователя" value="#" minlength="2" maxlength="40" required />
           <span class="credentials__input-error credentials__input-error_upper name-input-error"></span>
-          <input id="description-input" class="credentials__user-input" type="text" name="occupation" placeholder="Описание"
-            value="#" minlength="2" maxlength="200" required />
+          <input id="description-input" class="credentials__user-input" type="text" name="occupation"
+            placeholder="Описание" value="#" minlength="2" maxlength="200" required />
           <span class="credentials__input-error credentials__input-error_lower description-input-error"></span>
           <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сохранить</button>
         </form>
@@ -97,7 +103,8 @@
       <div class="popup__container">
         <h3 class="popup__title">Обновить аватар</h3>
         <form name="avatar-edit" class="credentials" novalidate>
-          <input id="avatar-input" class="credentials__user-input" type="url" name="avatar" placeholder="Ссылка на аватар" value="" required />
+          <input id="avatar-input" class="credentials__user-input" type="url" name="avatar"
+            placeholder="Ссылка на аватар" value="" required />
           <span class="credentials__input-error credentials__input-error_upper avatar-input-error"></span>
           <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сохранить</button>
         </form>

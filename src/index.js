@@ -1,7 +1,7 @@
 import './styles/index.css';
-import { addCard } from './scripts/renderCard.js'
-import { activatePopup, disableSubmit, removePopup, resetPopup } from './scripts/popup.js'
-import { acquireUserData, loadCards, acquireAllData } from './scripts/api.js'
+import { renderElementCard, postLike, disLike } from './scripts/renderCard.js'
+import { activatePopup, removePopup } from './scripts/popup.js'
+import { acquireAllData } from './scripts/api.js'
 import {
   currentAccountName,
   currentAccountProfession,
@@ -20,14 +20,16 @@ import {
   profileEditFormInitialValue2,
   newCardPlace,
   newCardUrl,
+  cardContainer,
 } from './scripts/data.js'
 
 import { handleAvatarForm, changeProfileCredentials, createNewCardCredentials } from './scripts/formHandlers.js'
 
+import { disableSubmit, resetPopup } from './scripts/validateForm.js'
+
 profileEditButton.addEventListener('click', () => {
   activatePopup(popupAccountEditModifier)
   disableSubmit(popupAccountEditModifier)
-  popupAccountEditModifier.querySelector('.credentials__submit-button').innerText = "Сохранить"
   resetPopup(profileEditFormCredentials)
   profileEditFormInitialValue1.setAttribute('value', currentAccountName.textContent)
   profileEditFormInitialValue2.setAttribute('value', currentAccountProfession.textContent)
@@ -50,7 +52,6 @@ avatarEditButton.addEventListener('mouseout', function (evt) {
 avatarEditButton.addEventListener('click', () => {
   activatePopup(popupAvatarEditModifier)
   disableSubmit(popupAvatarEditModifier)
-  popupAvatarEditModifier.querySelector('.credentials__submit-button').innerText = "Сохранить"
   resetPopup(profileAvatarEditFormCredentials)
 })
 
@@ -61,7 +62,6 @@ profileAvatarEditFormCredentials.addEventListener('submit', () => {
 newCardCreatorButton.addEventListener('click', () => {
   activatePopup(popupAccountNewCardModifier)
   disableSubmit(popupAccountNewCardModifier)
-  popupAccountNewCardModifier.querySelector('.credentials__submit-button').innerText = "Создать"
   resetPopup(profileNewCardFormCredentials)
 })
 
@@ -78,6 +78,14 @@ popupRemovers.forEach(popup => {
     }
   })
 })
+
+
+const addCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId) => {
+  const cardCaller = renderElementCard(cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId)
+  cardContainer.prepend(cardCaller)
+}
+
+
 
 acquireAllData()
   .then(([data, cards]) => {
@@ -101,4 +109,25 @@ acquireAllData()
     console.log('Ошибка: ', err);
   });
 
+  
+  // cardContainer.addEventListener('click', evt => {
+  //   if (evt.target.classList.contains('elements__like-button_active')) {
+  //     removeLikeElement(elementId)
+  //     .then(evt => {
+  //       disLike(evt)
+  //     })
+  //     .catch((err) => {
+  //       console.log('Ошибка: ', err);
+  //     })
+  //   } else {
+  //     createLikeElement(elementId, cardLikeCounter)
+  //     .then(evt => {
+  //       postLike(evt)
+  //     })
+  //     .catch((err) => {
+  //       console.log('Ошибка: ', err);
+  //    })
+  //   }
+  // })
 
+export { addCard }

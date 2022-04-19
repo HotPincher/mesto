@@ -61,6 +61,7 @@ const avatarUrl = document.querySelector('#avatar-input')
 const validationSettings = {
   formSelector: '.credentials',
   inputSelector: '.credentials__user-input',
+  inputErrorSelector: '.credentials__input-error',
   submitButtonSelector: '.credentials__submit-button',
   inactiveButtonClass: 'credentials__submit-button_disabled',
   inputErrorClass: 'credentials__user-input_invalid',

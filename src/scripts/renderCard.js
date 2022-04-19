@@ -1,5 +1,4 @@
 import {
-  cardContainer,
   cardFromTemplate,
   bigPicturePopup,
   bigPicturePopupImage,
@@ -57,7 +56,8 @@ import { removeCardElement, createLikeElement, removeLikeElement } from './api.j
     cardRemover.addEventListener('click', evt => {
       removeCardElement(elementId)
         .then(() => {
-          evt.target.closest('.elements__item').remove()
+          cardCreator.remove()
+          cardCreator = null
         })
         .catch((err) => {
           console.log('Ошибка: ', err);
@@ -77,16 +77,19 @@ import { removeCardElement, createLikeElement, removeLikeElement } from './api.j
 
   if (ownerIdLikes.indexOf(userId) !== -1) {
     cardLikeToggler.classList.add('elements__like-button_active')
-
   }
 
   return cardCreator
 }
 
-const addCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId) => {
-  const cardCaller = renderElementCard(cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId)
-  cardContainer.append(cardCaller)
+const postLike = (evt) => {
+  evt.target.classList.add('elements__like-button_active')
 }
 
-export { addCard }
+const disLike = (evt) => {
+  evt.target.classList.remove('elements__like-button_active')
+}
+
+
+export { renderElementCard }
 

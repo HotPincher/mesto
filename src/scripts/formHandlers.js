@@ -11,11 +11,13 @@ import {
 } from './data.js'
 import { editAvatar, changeProfileData, createCardElement } from './api.js'
 import { removePopup } from './popup.js'
-import { addCard } from './renderCard.js'
+import { addCard } from '../index.js'
 
 const handleAvatarForm = () => {
 
   const newAvatar = avatarUrl.value
+
+  popupAvatarEditModifier.querySelector('.credentials__submit-button').innerText = "Сохранение..."
 
   editAvatar(newAvatar)
 
@@ -23,11 +25,13 @@ const handleAvatarForm = () => {
       avatarImage.src = newAvatar
     })
     .then(() => {
-      popupAvatarEditModifier.querySelector('.credentials__submit-button').innerText = "Сохранение..."
       removePopup(popupAvatarEditModifier)
     })
     .catch((err) => {
       console.log('Ошибка: ', err);
+    })
+    .finally(() => {
+      popupAvatarEditModifier.querySelector('.credentials__submit-button').innerText = "Создать"
     })
 }
 
@@ -36,6 +40,8 @@ const changeProfileCredentials = () => {
   const pendingInputValue1 = profileEditFormInitialValue1.value
   const pendingInputValue2 = profileEditFormInitialValue2.value
 
+  popupAccountEditModifier.querySelector('.credentials__submit-button').innerText = "Сохранение..."
+
   changeProfileData(pendingInputValue1, pendingInputValue2)
 
     .then(() => {
@@ -43,33 +49,39 @@ const changeProfileCredentials = () => {
       currentAccountProfession.textContent = pendingInputValue2
     })
     .then(() => {
-      popupAccountEditModifier.querySelector('.credentials__submit-button').innerText = "Сохранение..."
       removePopup(popupAccountEditModifier)
     })
     .catch((err) => {
       console.log('Ошибка: ', err);
     })
+    .finally(() => {
+      popupAccountEditModifier.querySelector('.credentials__submit-button').innerText = "Сохранить"
+    })
 }
 
 const createNewCardCredentials = (cardLink, cardTitle) => {
 
+  popupAccountNewCardModifier.querySelector('.credentials__submit-button').innerText = "Сохранение..."
+
   createCardElement(cardLink, cardTitle)
       .then(data => {
-      const userId = data._id
       const ownerId = data.owner._id;
+      const userId = ownerId
       const elementId = data._id;
       const ownerIdLikes = [];
       const like = data.likes;
       const likeLength = like.length
       like.forEach(element =>{ownerIdLikes.push(element._id)})
-      addCard(cardLink, cardTitle, likeLength, userId, ownerId, elementId, ownerIdLikes)  
+      addCard(cardLink, cardTitle, likeLength, userId, ownerId, elementId, ownerIdLikes)
     })
     .then(() => {
-      popupAccountNewCardModifier.querySelector('.credentials__submit-button').innerText = "Сохранение..."
       removePopup(popupAccountNewCardModifier)
     })
     .catch((err) => {
       console.log('Ошибка: ', err);
+    })
+    .finally(() => {
+      popupAccountNewCardModifier.querySelector('.credentials__submit-button').innerText = "Создать"
     })
 }
 

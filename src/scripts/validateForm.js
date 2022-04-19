@@ -1,5 +1,18 @@
 import { validationSettings } from "./data.js"
 
+const resetPopup = (formElement) => {
+  formElement.reset()
+  formElement.querySelectorAll(validationSettings.inputSelector).forEach(item => {
+    if (item.classList.contains(validationSettings.inputErrorClass)) {
+      item.classList.remove(validationSettings.inputErrorClass)
+    }
+  })
+  formElement.querySelectorAll(validationSettings.inputErrorSelector).forEach(item => {
+    item.classList.add(validationSettings.inputErrorHiddenClass)
+    item.textContent = " "
+  })
+}
+
 const showInputError = (formSet, credentialsInput, errorMessage, config) => {
   const errorElement = formSet.querySelector(`.${credentialsInput.id}-error`)
   credentialsInput.classList.add(config.inputErrorClass)
@@ -38,6 +51,12 @@ const toggleSubmit = (inputList, buttonElement, config) => {
   }
 }
 
+const disableSubmit = (submitElement) => {
+  const button = submitElement.querySelector('.credentials__submit-button')
+  button.classList.add('credentials__submit-button_disabled')
+  button.setAttribute('disabled', 'true')
+}
+
 const setEventListener = (formSet, config) => {
   const inputItems = Array.from(formSet.querySelectorAll(config.inputSelector))
   const buttonElement = formSet.querySelector(config.submitButtonSelector)
@@ -62,4 +81,4 @@ const enableValidation = (config) => {
 }
 enableValidation(validationSettings)
 
-export { enableValidation }
+export { enableValidation, disableSubmit, resetPopup }

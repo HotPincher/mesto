@@ -8,7 +8,10 @@ import errorImage from '../images/no-image.jpg'
 import { activatePopup } from './popup.js'
 import { removeCardElement, createLikeElement, removeLikeElement } from './api.js'
 
-  const renderElementCard = (cardLink, cardTitle, likes, userId, ownerId, elementId, ownerIdLikes) => {
+
+
+
+const renderElementCard = (cardLink, cardTitle, likes, userId, ownerId, elementId, ownerIdLikes) => {
   const cardCreator = cardFromTemplate.cloneNode(true)
   const cardCreatorTextElement = cardCreator.querySelector('.elements__heading')
   const cardCreatorImageElement = cardCreator.querySelector('.elements__image')
@@ -30,28 +33,6 @@ import { removeCardElement, createLikeElement, removeLikeElement } from './api.j
     activatePopup(bigPicturePopup)
   })
 
-  const postLike = (evt, cardLikeCounter, elementId) => {
-
-    createLikeElement(elementId, cardLikeCounter)
-      .then(() => {
-        evt.target.classList.add('elements__like-button_active')
-      })
-      .catch((err) => {
-        console.log('Ошибка: ', err);
-      })
-  }
-  
-  const dislike = (evt, cardLikeCounter, elementId) => {
-
-    removeLikeElement(elementId, cardLikeCounter)
-      .then(() => {
-        evt.target.classList.remove('elements__like-button_active')
-      })
-      .catch((err) => {
-        console.log('Ошибка: ', err);
-      })
-  }
-
   if (userId === ownerId) {
     cardRemover.addEventListener('click', evt => {
       removeCardElement(elementId)
@@ -67,11 +48,34 @@ import { removeCardElement, createLikeElement, removeLikeElement } from './api.j
     cardRemover.remove()
   }
 
-  cardLikeToggler.addEventListener('click', function (evt) {
+  const postLike = (cardLikeCounter, elementId) => {
+
+    createLikeElement(elementId, cardLikeCounter)
+      .then(() => {
+        cardLikeToggler.classList.add('elements__like-button_active')
+      })
+      .catch((err) => {
+        console.log('Ошибка: ', err);
+      })
+  }
+  
+  const disLike = (cardLikeCounter, elementId) => {
+  
+    removeLikeElement(elementId, cardLikeCounter)
+      .then(() => {
+        cardLikeToggler.classList.remove('elements__like-button_active')
+      })
+      .catch((err) => {
+        console.log('Ошибка: ', err);
+      })
+  }
+
+  cardLikeToggler.addEventListener('click', function () {
     if (cardLikeToggler.classList.contains('elements__like-button_active')) {
-      dislike(evt, cardLikeCounter, elementId)
+      console.log('yes')
+      disLike(cardLikeCounter, elementId) 
     } else {
-      postLike(evt, cardLikeCounter, elementId)
+      postLike(cardLikeCounter, elementId)
     }
   })
 
@@ -81,15 +85,6 @@ import { removeCardElement, createLikeElement, removeLikeElement } from './api.j
 
   return cardCreator
 }
-
-const postLike = (evt) => {
-  evt.target.classList.add('elements__like-button_active')
-}
-
-const disLike = (evt) => {
-  evt.target.classList.remove('elements__like-button_active')
-}
-
 
 export { renderElementCard }
 

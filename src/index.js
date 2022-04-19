@@ -1,5 +1,5 @@
 import './styles/index.css';
-import { renderElementCard, postLike, disLike } from './scripts/renderCard.js'
+import { renderElementCard } from './scripts/renderCard.js'
 import { activatePopup, removePopup } from './scripts/popup.js'
 import { acquireAllData } from './scripts/api.js'
 import {
@@ -79,13 +79,15 @@ popupRemovers.forEach(popup => {
   })
 })
 
-
-const addCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId) => {
+const prependCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId) => {
   const cardCaller = renderElementCard(cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId)
   cardContainer.prepend(cardCaller)
 }
 
-
+const appendCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId) => {
+  const cardCaller = renderElementCard(cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId)
+  cardContainer.append(cardCaller)
+}
 
 acquireAllData()
   .then(([data, cards]) => {
@@ -100,34 +102,11 @@ acquireAllData()
       const like = card.likes;
       const likeLength = like.length
       like.forEach(element =>{ownerIdLikes.push(element._id)})
-
-
-      addCard(card.link, card.name, likeLength, userId, ownerId, elementId, ownerIdLikes)
+      appendCard(card.link, card.name, likeLength, userId, ownerId, elementId, ownerIdLikes)
     })
   })
   .catch(err => {
     console.log('Ошибка: ', err);
   });
 
-  
-  // cardContainer.addEventListener('click', evt => {
-  //   if (evt.target.classList.contains('elements__like-button_active')) {
-  //     removeLikeElement(elementId)
-  //     .then(evt => {
-  //       disLike(evt)
-  //     })
-  //     .catch((err) => {
-  //       console.log('Ошибка: ', err);
-  //     })
-  //   } else {
-  //     createLikeElement(elementId, cardLikeCounter)
-  //     .then(evt => {
-  //       postLike(evt)
-  //     })
-  //     .catch((err) => {
-  //       console.log('Ошибка: ', err);
-  //    })
-  //   }
-  // })
-
-export { addCard }
+export { prependCard }

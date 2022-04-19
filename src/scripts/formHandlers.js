@@ -11,7 +11,7 @@ import {
 } from './data.js'
 import { editAvatar, changeProfileData, createCardElement } from './api.js'
 import { removePopup } from './popup.js'
-import { addCard } from '../index.js'
+import { prependCard } from '../index.js'
 
 const handleAvatarForm = () => {
 
@@ -72,7 +72,7 @@ const createNewCardCredentials = (cardLink, cardTitle) => {
       const like = data.likes;
       const likeLength = like.length
       like.forEach(element =>{ownerIdLikes.push(element._id)})
-      addCard(cardLink, cardTitle, likeLength, userId, ownerId, elementId, ownerIdLikes)
+      prependCard(cardLink, cardTitle, likeLength, userId, ownerId, elementId, ownerIdLikes)
     })
     .then(() => {
       removePopup(popupAccountNewCardModifier)

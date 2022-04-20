@@ -1,7 +1,7 @@
 import './styles/index.css';
-import { renderElementCard } from './scripts/renderCard.js'
+import { renderElementCard, updateLikes, updateDelete } from './scripts/renderCard.js'
 import { activatePopup, removePopup } from './scripts/popup.js'
-import { acquireAllData } from './scripts/api.js'
+import { acquireAllData, createLikeElement, removeCardElement } from './scripts/api.js'
 import {
   currentAccountName,
   currentAccountProfession,
@@ -22,9 +22,7 @@ import {
   newCardUrl,
   cardContainer,
 } from './scripts/data.js'
-
 import { handleAvatarForm, changeProfileCredentials, createNewCardCredentials } from './scripts/formHandlers.js'
-
 import { disableSubmit, resetPopup } from './scripts/validateForm.js'
 
 profileEditButton.addEventListener('click', () => {
@@ -79,13 +77,56 @@ popupRemovers.forEach(popup => {
   })
 })
 
+let userId = null
+
+function handleLikeClick(cardElement, cardId, isLike) {
+
+  createLikeElement(cardId, isLike)
+    .then((dataCards) => {
+      updateLikes(cardElement, dataCards.likes, userId)
+    })
+    .catch((err) => {
+      console.log('Ошибка: ', err);
+    })
+}
+
+function handleDeleteClick(cardElement, cardId, elementId) {
+
+  removeCardElement(cardId, elementId)
+    .then(() => {
+      updateDelete(cardElement, cardId, elementId)
+      cardElement.remove()
+    })
+    .catch((err) => {
+      console.log('Ошибка: ', err);
+    })
+}
+
 const prependCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId) => {
-  const cardCaller = renderElementCard(cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId)
+  const cardCaller = renderElementCard(
+    cardLink, 
+    cardTitle, 
+    likes, 
+    elementId, 
+    ownerIdLikes, 
+    userId, 
+    ownerId, 
+    handleLikeClick, 
+    handleDeleteClick)
   cardContainer.prepend(cardCaller)
 }
 
 const appendCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId) => {
-  const cardCaller = renderElementCard(cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId)
+  const cardCaller = renderElementCard(
+    cardLink, 
+    cardTitle, 
+    likes, 
+    elementId, 
+    ownerIdLikes, 
+    userId, 
+    ownerId, 
+    handleLikeClick, 
+    handleDeleteClick)
   cardContainer.append(cardCaller)
 }
 
@@ -95,14 +136,13 @@ acquireAllData()
     currentAccountName.textContent = data.name
     currentAccountProfession.textContent = data.about
     cards.forEach(card => {
-      const userId = data._id
+      userId = data._id
       const ownerId = card.owner._id;
       const elementId = card._id;
       const ownerIdLikes = [];
-      const like = card.likes;
-      const likeLength = like.length
-      like.forEach(element =>{ownerIdLikes.push(element._id)})
-      appendCard(card.link, card.name, likeLength, userId, ownerId, elementId, ownerIdLikes)
+      const likes = card.likes;
+      likes.forEach(element => {ownerIdLikes.push(element._id)})
+      appendCard(card.link, card.name, likes, userId, ownerId, elementId, ownerIdLikes)
     })
   })
   .catch(err => {

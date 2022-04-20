@@ -59,27 +59,17 @@ const removeCardElement = (elementId) => {
     .then(validateResponce)
 }
 
-const createLikeElement = (elementId, cardLikeCounter) => {
+const createLikeElement = (elementId, isLike) => {
   return fetch(`${serverConfig.baseUrl}/cards/likes/${elementId}`, {
-    method: 'PUT',
+    method: !isLike ? 'PUT' : 'DELETE',
     headers: serverConfig.headers,
   })
     .then(validateResponce)
-    .then(data => {cardLikeCounter.textContent = data.likes.length})
-}
-
-const removeLikeElement = (elementId, cardLikeCounter) => {
-  return fetch(`${serverConfig.baseUrl}/cards/likes/${elementId}`, {
-    method: 'DELETE',
-    headers: serverConfig.headers,
-  })
-    .then(validateResponce)
-    .then(data => {cardLikeCounter.textContent = data.likes.length})
 }
 
 const acquireAllData = () => {
   return Promise.all([acquireUserData(), loadCards()])
-}  
+}
 
 export {
   validateResponce,
@@ -90,6 +80,5 @@ export {
   createCardElement,
   removeCardElement,
   createLikeElement,
-  removeLikeElement,
   acquireAllData,
 } 

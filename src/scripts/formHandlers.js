@@ -64,15 +64,14 @@ const createNewCardCredentials = (cardLink, cardTitle) => {
   popupAccountNewCardModifier.querySelector('.credentials__submit-button').innerText = "Сохранение..."
 
   createCardElement(cardLink, cardTitle)
-      .then(data => {
+    .then(data => {
       const ownerId = data.owner._id;
       const userId = ownerId
       const elementId = data._id;
       const ownerIdLikes = [];
-      const like = data.likes;
-      const likeLength = like.length
-      like.forEach(element =>{ownerIdLikes.push(element._id)})
-      prependCard(cardLink, cardTitle, likeLength, userId, ownerId, elementId, ownerIdLikes)
+      const likes = data.likes;
+      likes.forEach(element => { ownerIdLikes.push(element._id) })
+      prependCard(cardLink, cardTitle, likes, userId, ownerId, elementId, ownerIdLikes)
     })
     .then(() => {
       removePopup(popupAccountNewCardModifier)

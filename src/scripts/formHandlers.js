@@ -13,11 +13,18 @@ import { editAvatar, changeProfileData, createCardElement } from './api.js'
 import { removePopup } from './popup.js'
 import { prependCard } from '../index.js'
 
+const renderLoading = (isLoading, popup, text) => {
+  if (isLoading) {
+    popup.querySelector('.credentials__submit-button').innerText = text
+  } else {
+    popup.querySelector('.credentials__submit-button').innerText = text
+  }
+}
+
 const handleAvatarForm = () => {
 
   const newAvatar = avatarUrl.value
-
-  popupAvatarEditModifier.querySelector('.credentials__submit-button').innerText = "Сохранение..."
+  renderLoading(true, popupAvatarEditModifier, "Сохранение...")
 
   editAvatar(newAvatar)
 
@@ -31,7 +38,7 @@ const handleAvatarForm = () => {
       console.log('Ошибка: ', err);
     })
     .finally(() => {
-      popupAvatarEditModifier.querySelector('.credentials__submit-button').innerText = "Создать"
+      renderLoading(false, popupAvatarEditModifier, "Сохранить")
     })
 }
 
@@ -39,8 +46,8 @@ const changeProfileCredentials = () => {
 
   const pendingInputValue1 = profileEditFormInitialValue1.value
   const pendingInputValue2 = profileEditFormInitialValue2.value
-
-  popupAccountEditModifier.querySelector('.credentials__submit-button').innerText = "Сохранение..."
+  
+  renderLoading(true, popupAccountEditModifier, "Сохранение...")
 
   changeProfileData(pendingInputValue1, pendingInputValue2)
 
@@ -55,14 +62,13 @@ const changeProfileCredentials = () => {
       console.log('Ошибка: ', err);
     })
     .finally(() => {
-      popupAccountEditModifier.querySelector('.credentials__submit-button').innerText = "Сохранить"
+      renderLoading(false, popupAccountEditModifier, "Сохранить")
     })
 }
 
 const createNewCardCredentials = (cardLink, cardTitle) => {
 
-  popupAccountNewCardModifier.querySelector('.credentials__submit-button').innerText = "Сохранение..."
-
+  renderLoading(true, popupAccountNewCardModifier, "Сохранение...")
   createCardElement(cardLink, cardTitle)
     .then(data => {
       const ownerId = data.owner._id;
@@ -80,7 +86,7 @@ const createNewCardCredentials = (cardLink, cardTitle) => {
       console.log('Ошибка: ', err);
     })
     .finally(() => {
-      popupAccountNewCardModifier.querySelector('.credentials__submit-button').innerText = "Создать"
+      renderLoading(false, popupAccountNewCardModifier, "Создать")
     })
 }
 

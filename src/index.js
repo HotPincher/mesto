@@ -26,6 +26,7 @@ import { handleAvatarForm, changeProfileCredentials, createNewCardCredentials } 
 import { disableSubmit, resetPopup } from './scripts/validateForm.js'
 
 const api = new Api ();
+const userInfo = new UserInfo (currentAccountName, currentAccountProfession);
 
 profileEditButton.addEventListener('click', () => {
   activatePopup(popupAccountEditModifier)

@@ -1,7 +1,7 @@
 # Project name: Mesto
 
 
-This is my third prototype project in Yandex Practicum Web Devlopper training course. 
+This is my third prototype project in Yandex Practicum Web Developer training course. 
 NOTICE: The current repository is for training purposes only. 
 
 The following features have been implemented in this page:

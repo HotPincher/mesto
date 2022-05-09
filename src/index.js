@@ -1,7 +1,8 @@
 import './styles/index.css';
 import { renderElementCard, updateLikes, updateDelete } from './scripts/renderCard.js'
 import { activatePopup, removePopup } from './scripts/popup.js'
-import Api from './scripts/api.js'
+import Api from './scripts/Api.js'
+import UserInfo from './scripts/UserInfo';
 import {
   currentAccountName,
   currentAccountProfession,
@@ -136,8 +137,8 @@ const appendCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId,
 api.acquireAllData()
   .then(([data, cards]) => {
     avatarImage.src = data.avatar
-    currentAccountName.textContent = data.name
-    currentAccountProfession.textContent = data.about
+    userInfo.setUserInfo(data.name, data.about)
+    userInfo.updateUserInfo()
     cards.forEach(card => {
       userId = data._id
       const ownerId = card.owner._id;

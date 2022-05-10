@@ -60,7 +60,7 @@ const renderElementCard = (
     bigPicturePopupImage.alt = cardTitle
     bigPicturePopupSpan.textContent = cardTitle
     bigPicturePopupImage.onerror = () => { bigPicturePopupImage.src = errorImage }
-    activatePopup(bigPicturePopup)
+    /*activatePopup(bigPicturePopup)*/
   })
 
   cardLikeToggler.addEventListener('click', function () {

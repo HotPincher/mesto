@@ -1,4 +1,5 @@
 export default class Api {
+  
   static serverConfig = {
     baseUrl: "https://nomoreparties.co/v1/plus-cohort-8",
     headers: {

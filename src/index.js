@@ -1,8 +1,8 @@
 import './styles/index.css';
 import { renderElementCard, updateLikes, updateDelete } from './scripts/renderCard.js'
-import { activatePopup, removePopup } from './scripts/popup.js'
 import Api from './scripts/Api.js'
 import UserInfo from './scripts/UserInfo';
+import Popup from './scripts/popup.js';
 import {
   currentAccountName,
   currentAccountProfession,
@@ -28,9 +28,12 @@ import { disableSubmit, resetPopup } from './scripts/validateForm.js'
 
 const api = new Api ();
 const userInfo = new UserInfo (currentAccountName, currentAccountProfession);
+const popupAvatarEdit = new Popup (Popup.popupSelectors.popupAvatar);
+popupAvatarEdit.setEventListeners();
 
-profileEditButton.addEventListener('click', () => {
-  activatePopup(popupAccountEditModifier)
+/*profileEditButton.addEventListener('click', () => {
+  popupAccountEdit.activatePopup()
+  popupAccountEdit.setEventListeners()
   disableSubmit(popupAccountEditModifier)
   resetPopup(profileEditFormCredentials)
   profileEditFormInitialValue1.setAttribute('value', currentAccountName.textContent)
@@ -50,13 +53,15 @@ avatarEditButton.addEventListener('mouseout', function (evt) {
   evt.target.closest('.profile__avatar-swapper').classList.remove('profile__avatar-swapper_active')
   document.querySelector('.profile__avatar-swapper-icon').classList.remove('profile__avatar-swapper-icon_active')
 })
+*/
 
 avatarEditButton.addEventListener('click', () => {
-  activatePopup(popupAvatarEditModifier)
-  disableSubmit(popupAvatarEditModifier)
-  resetPopup(profileAvatarEditFormCredentials)
+  popupAvatarEdit.activatePopup();
+  disableSubmit(popupAvatarEditModifier);
+  resetPopup(profileAvatarEditFormCredentials);
 })
 
+/*
 profileAvatarEditFormCredentials.addEventListener('submit', () => {
   handleAvatarForm(profileAvatarEditFormCredentials)
 })
@@ -72,15 +77,7 @@ profileNewCardFormCredentials.addEventListener('submit', () => {
   const currentInputUrl = newCardUrl.value
   createNewCardCredentials(currentInputUrl, currentInputPlace)
 })
-
-popupRemovers.forEach(popup => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) {
-      removePopup(popup)
-    }
-  })
-})
-
+*/
 let userId = null
 
 function handleLikeClick(cardElement, cardId, isLike) {

@@ -1,22 +1,46 @@
-import { enableValidation } from './validateForm.js'
+export default class Popup {
+  static popupSelectors = {
+    popupAvatar: '#avatarEditPopup',
+    popupAccount: '#profileEditPopup',
+    popupNewCard: '#newCardPopup',
+    popupBigPicture: '#big-picture-popup'
+  }
 
-const activatePopup = popup => {
-  popup.classList.remove('popup_closed')
-  popup.classList.add('popup_opened')
-  document.addEventListener('keydown', removePopupByEsc)
-}
+  constructor (selector) {
+    this._popup = document.querySelector(selector);
+    this._btnClose = this._popup.querySelector('.popup__close-button');
+  }
 
-const removePopup = popup => {
-  popup.classList.add('popup_closed')
-  popup.classList.remove('popup_opened')
-  document.removeEventListener('keydown', removePopupByEsc)
-}
+  activatePopup () {
+    this._popup.classList.remove('popup_closed')
+    this._popup.classList.add('popup_opened')
+    document.addEventListener('keydown', this._removePopupByEsc)
+  }
 
-const removePopupByEsc = (evt) => {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened')
-    removePopup(openedPopup)
+
+  removePopup () {
+    this._popup.classList.add('popup_closed')
+    this._popup.classList.remove('popup_opened')
+    document.removeEventListener('keydown', this._removePopupByEsc)
+  }
+
+  _removePopupByEsc = (evt) => {
+    if (evt.key === 'Escape') {
+      this.removePopup();
+    }
+  }
+
+  setEventListeners() {
+    this._btnClose.addEventListener ('click', () => {
+      this.removePopup();
+    } )
+    this._popup.addEventListener('mousedown', () => {
+        this.removePopup();
+    })
   }
 }
 
-export { activatePopup, removePopup, removePopupByEsc }
+
+
+
+

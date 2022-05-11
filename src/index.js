@@ -1,7 +1,8 @@
 import './styles/index.css';
 import { renderElementCard, updateLikes, updateDelete } from './scripts/renderCard.js'
 import { activatePopup, removePopup } from './scripts/popup.js'
-import { acquireAllData, createLikeElement, removeCardElement } from './scripts/api.js'
+import Api from './scripts/Api.js'
+import UserInfo from './scripts/UserInfo';
 import {
   currentAccountName,
   currentAccountProfession,
@@ -24,6 +25,9 @@ import {
 } from './scripts/data.js'
 import { handleAvatarForm, changeProfileCredentials, createNewCardCredentials } from './scripts/formHandlers.js'
 import { disableSubmit, resetPopup } from './scripts/validateForm.js'
+
+const api = new Api ();
+const userInfo = new UserInfo (currentAccountName, currentAccountProfession);
 
 profileEditButton.addEventListener('click', () => {
   activatePopup(popupAccountEditModifier)
@@ -81,7 +85,7 @@ let userId = null
 
 function handleLikeClick(cardElement, cardId, isLike) {
 
-  createLikeElement(cardId, isLike)
+  api.createLikeElement(cardId, isLike)
     .then((dataCards) => {
       updateLikes(cardElement, dataCards.likes, userId)
     })
@@ -92,7 +96,7 @@ function handleLikeClick(cardElement, cardId, isLike) {
 
 function handleDeleteClick(cardElement, cardId, elementId) {
 
-  removeCardElement(cardId, elementId)
+  api.removeCardElement(cardId, elementId)
     .then(() => {
       updateDelete(cardElement, cardId, elementId)
       cardElement.remove()
@@ -130,11 +134,11 @@ const appendCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId,
   cardContainer.append(cardCaller)
 }
 
-acquireAllData()
+api.acquireAllData()
   .then(([data, cards]) => {
     avatarImage.src = data.avatar
-    currentAccountName.textContent = data.name
-    currentAccountProfession.textContent = data.about
+    userInfo.setUserInfo(data.name, data.about)
+    userInfo.updateUserInfo()
     cards.forEach(card => {
       userId = data._id
       const ownerId = card.owner._id;

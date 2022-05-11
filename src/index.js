@@ -77,6 +77,7 @@ popupRemovers.forEach(popup => {
   })
 })
 
+
 let userId = null
 
 function handleLikeClick(cardElement, cardId, isLike) {

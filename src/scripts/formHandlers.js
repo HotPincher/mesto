@@ -9,7 +9,7 @@ import {
   profileEditFormInitialValue1,
   profileEditFormInitialValue2,
 } from './data.js'
-import { editAvatar, changeProfileData, createCardElement } from './api.js'
+/*import { editAvatar, changeProfileData, createCardElement } from './api.js'*/
 import { removePopup } from './popup.js'
 import { prependCard } from '../index.js'
 

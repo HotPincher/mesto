@@ -1,90 +1,115 @@
+import { activatePopup } from './popup.js'
+import { bigPicturePopup, bigPicturePopupImage, bigPicturePopupSpan} from './data.js'
 export default class Card {
-  constructor(data, selector, { handleCardClick, handleLikeClick, handleDeleteClick }) {
-    this._data = data;
-    this._userId = data.userId; 
-    this._cardContainer = document.querySelector(selector);
-    this._handleCardClick = handleCardClick;
-    this._handleLikeClick = handleLikeClick;
-    this._handleDeleteClick = handleDeleteClick;
+  constructor ({data}, selector) {
+    this._selector = selector
+    this._image = data.src
+    this._heading = data.text
+    this._likes = data.likes  
+    this._ownerId = data.owner._id;
+    this._cardId = data._id;
   }
 
-  _getElementCard() {
-    const cardCreator = this._cardContainer
-      .content
-      .querySelector(this.querySelector('.elements__item'))
-      .cloneNode(true);
+  _getItem() {
+    const cardCreator = document
+    .querySelector(this._selector)
+    .content
+    .querySelector('.elements__item')
+    .cloneNode(true)
 
-    return cardCreator;
+    return cardCreator
   }
 
-  _isLiked (cardLikes) {
-    return cardLikes.some(like => like._id === this._userId)
+  createNode() {
+    this._card = this._getItem()
+    this._cardImage = this._card.querySelector('.elements__image')
+    this._cardHeading = this._card.querySelector('.elements__heading')
+    this._likeCounter = this._card.querySelector('.elements__like-counter')
+    this._likeButton = this._card.querySelector('.elements__like-button')
+    this._deleteButton = this._card.querySelector('.elements__delete-button')
+    
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._heading;
+    this._cardHeading.textContent = this._heading;
+    this._likeCounter.textContent = this._likes.length 
+
+    this._setEventListeners()
+
+    return this._card
+    
   }
-  
-  _canDelete () {
-    return this._userId !== this.ownerId
+
+  _activatePopup () {
+    bigPicturePopupImage.src = this._image
+    bigPicturePopupImage.alt = this._heading
+    bigPicturePopupSpan.textContent = this._heading
+    activatePopup(bigPicturePopup)
   }
-  
-  
-  _updateLikes (cardLikes) {
-    const cardLikeToggler = this.cardCreator.querySelector('.elements__like-button')
-    const cardLikeCounter = this.cardCreator.querySelector('.elements__like-counter')
-    cardLikeCounter.textContent = cardLikes.length
-  
-    if (this._isLiked(this._data.likes)) {
-      cardLikeToggler.classList.add('elements__like-button_active')
+
+  _isLiked () {
+    return this._likeButton.classList.contains('elements__like-button_active')
+    // return this._likes.some(like => like._id === this.userId)
+  }
+
+  _handleImageClick() {
+    this._activatePopup()
+  }
+
+  _updateLikes() {  
+    if (!this._isLiked()) {
+      this._likeButton.classList.add('elements__like-button_active')
     } else {
-      cardLikeToggler.classList.remove('elements__like-button_active')
+      this._likeButton.classList.remove('elements__like-button_active')
     }
   }
   
-  
+  _handleLikeClick(isLike) {
+    
+    // createLikeElement(this._cardId, isLike)
+    
+    // .then((dataCards) => {
+        this._updateLikes()
+      // })
+      // .catch((err) => {
+      //   console.log('Ошибка: ', err);
+      // })
+  }
+
+  _canDelete () {
+    return this.userId !== this._ownerId
+  }
+
   _updateDelete () {
-  const cardRemover = this.cardCreator.querySelector('#elements__delete-button-template')
-  if (canDelete(this._userId, this.ownerId)) {
-    cardRemover.remove()
-  }
-}
-
-  renderElementCard() {
-    this._element = this._getElementCard();
-
-    this._image = this._element.querySelector(this.querySelector('.elements__image'));
-    this._heading = this._element.querySelector(this.querySelector('.elements__heading'));
-    this._likeCounter = this._element.querySelector(this.querySelector('.elements__like-counter'));
-    this._likeButton = this._element.querySelector(this.querySelector('.elements__like-button'));
-    this._deleteButton = this._element.querySelector(this.querySelector('.elements__delete-button'))
-
-
-    this._image.src = `${this._data.link}`;
-    this._image.alt = `${this._data.name}`;
-    this._image.dataset.id = this._data._id;
-    this._heading.textContent = `${this._data.name}`;
-    this._likeCounter.textContent = `${this._data.likes.length}`;
-    this.ownerId = this._data.ownerId;
-
-    _setEventListeners() {
-      this._image.addEventListener('click', () => {
-      this.bigPicturePopupImage.src = `${this._data.link}`;
-      this.bigPicturePopupImage.alt = `${this._data.name}`;
-      this.bigPicturePopupSpan.textContent = cardTitle;
-      this.bigPicturePopupImage.onerror = () => { this.bigPicturePopupImage.src = errorImage };
-      activatePopup(bigPicturePopup);
-  
-        this._handleCardClick(this._data);
-      })
-  
-      this._deleteButton.addEventListener('click', function () {
-
-      });
-  
-      this._likeButton.addEventListener('click', function () {
-
-      })
+    if (this._canDelete()) {
+      this._deleteButton.remove()
     }
-
-
-
-    return this._element;
   }
-};
+
+  _handleDeleteClick() {
+
+    removeCardElement(this._cardId, elementId)
+      .then(() => {
+        this._updateDelete(cardElement, this._cardId, elementId)
+        this._card.remove()
+      })
+      .catch((err) => {
+        console.log('Ошибка: ', err);
+      })
+  }
+
+  _setEventListeners() {
+
+    this._cardImage.addEventListener('click', () => {
+      this._handleImageClick();
+    });
+
+    this._likeButton.addEventListener('click', () => {
+      this._handleLikeClick()
+    });
+
+    this._deleteButton.addEventListener('click', () => {
+      this._handleDeleteClick();
+    });
+  }
+  
+}

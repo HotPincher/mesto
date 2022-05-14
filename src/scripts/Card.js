@@ -4,7 +4,6 @@ import { api, userId } from '../index.js'
 export default class Card {
   constructor({ data }, selector) {
     this._selector = selector
-    this._userId = userId
     this._likes = data.likes
     this._image = data.link
     this._heading = data.name
@@ -52,7 +51,7 @@ export default class Card {
   }
 
   _isLikedByMe() {
-    return this._likes.some(like => like._id === this._userId)
+    return this._likes.some((like) => like._id === userId)
   }
 
   _renderLiked() {
@@ -66,10 +65,10 @@ export default class Card {
     api.createLikeElement(this._cardId)
 
       .then((data) => {
-        this._likeCounter.innerText = data.likes.length
+        this._likeCounter.textContent = data.likes.length
       })
       .then(() => {
-        this._likeButton.classList.add('elements__like-button_active')
+        this._likeButton.classList.toggle('elements__like-button_active')
       })
       .catch((err) => {
         console.log('Ошибка: ', err);
@@ -81,18 +80,18 @@ export default class Card {
     api.removeLikeElement(this._cardId)
 
       .then((data) => {
-        this._likeCounter.innerText = data.likes.length
+        this._likeCounter.textContent = data.likes.length
       })
       .then(() => {
-        this._likeButton.classList.remove('elements__like-button_active')
+        this._likeButton.classList.toggle('elements__like-button_active')
       })
       .catch((err) => {
         console.log('Ошибка: ', err);
       })
   }
 
-  _handleLikeClick() {
-    if (this._isLikedByMe()) {
+  _handleLikeClick(evt) {
+    if (evt.target.classList.contains("elements__like-button_active")) {
       this._removeLike()
     } else {
       this._putLike()
@@ -100,7 +99,7 @@ export default class Card {
   }
 
   _canDelete() {
-    return this._userId !== this._ownerId
+    return userId !== this._ownerId
   }
 
   _renderDelete() {
@@ -130,8 +129,8 @@ export default class Card {
       this._handleImageClick();
     });
 
-    this._likeButton.addEventListener('click', () => {
-      this._handleLikeClick()
+    this._likeButton.addEventListener('click', (evt) => {
+      this._handleLikeClick(evt)
     });
 
     this._deleteButton.addEventListener('click', () => {

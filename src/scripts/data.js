@@ -8,8 +8,8 @@ const serverConfig = {
 
 // PAGE LAYOUT
 
-const currentAccountName = document.querySelector('.profile__title')
-const currentAccountProfession = document.querySelector('.profile__subtitle')
+const accountName = document.querySelector('.profile__title')
+const accountJob = document.querySelector('.profile__subtitle')
 
 // BUTTONS
 
@@ -50,8 +50,8 @@ const bigPicturePopupSpan = bigPicturePopup.querySelector('.big-picture__tag')
 const profileEditFormCredentials = document.forms['profile-edit']
 const profileNewCardFormCredentials = document.forms['card-edit']
 const profileAvatarEditFormCredentials = document.forms['avatar-edit']
-const profileEditFormInitialValue1 = profileEditFormCredentials.querySelector('#name-input')
-const profileEditFormInitialValue2 = profileEditFormCredentials.querySelector('#description-input')
+const formValueName = profileEditFormCredentials.querySelector('#name-input')
+const formValueJob = profileEditFormCredentials.querySelector('#description-input')
 const newCardPlace = document.querySelector('#place-input')
 const newCardUrl = document.querySelector('#url-input')
 const avatarUrl = document.querySelector('#avatar-input')
@@ -69,8 +69,8 @@ const validationSettings = {
 }
 
 export {
-  currentAccountName,
-  currentAccountProfession,
+  accountName,
+  accountJob,
   profileEditButton,
   avatarEditButton,
   newCardCreatorButton,
@@ -86,8 +86,8 @@ export {
   profileEditFormCredentials,
   profileAvatarEditFormCredentials,
   profileNewCardFormCredentials,
-  profileEditFormInitialValue1,
-  profileEditFormInitialValue2,
+  formValueName,
+  formValueJob,
   newCardPlace,
   newCardUrl,
   avatarUrl,

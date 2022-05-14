@@ -1,11 +1,13 @@
 import './styles/index.css';
 import { renderElementCard, updateLikes, updateDelete } from './scripts/renderCard.js'
 import { activatePopup, removePopup } from './scripts/popup.js'
-import Api from './scripts/Api.js'
+import Api from './scripts/api.js'
 import UserInfo from './scripts/UserInfo';
+import Card from './scripts/Card.js'
+import Section from './scripts/Section.js'
 import {
-  currentAccountName,
-  currentAccountProfession,
+  accountName,
+  accountJob,
   avatarImage,
   profileEditButton,
   avatarEditButton,
@@ -17,24 +19,25 @@ import {
   profileEditFormCredentials,
   profileAvatarEditFormCredentials,
   profileNewCardFormCredentials,
-  profileEditFormInitialValue1,
-  profileEditFormInitialValue2,
+  formValueName,
+  formValueJob,
   newCardPlace,
   newCardUrl,
-  cardContainer,
 } from './scripts/data.js'
 import { handleAvatarForm, changeProfileCredentials, createNewCardCredentials } from './scripts/formHandlers.js'
 import { disableSubmit, resetPopup } from './scripts/validateForm.js'
 
-const api = new Api ();
-const userInfo = new UserInfo (currentAccountName, currentAccountProfession);
+export const api = new Api ();
+export const userInfo = new UserInfo (accountName, accountJob);
+export const cardSection = new Section (renderCard, '.elements');
+export let userId = null
 
 profileEditButton.addEventListener('click', () => {
   activatePopup(popupAccountEditModifier)
   disableSubmit(popupAccountEditModifier)
   resetPopup(profileEditFormCredentials)
-  profileEditFormInitialValue1.setAttribute('value', currentAccountName.textContent)
-  profileEditFormInitialValue2.setAttribute('value', currentAccountProfession.textContent)
+  formValueName.setAttribute('value', accountName.textContent)
+  formValueJob.setAttribute('value', accountJob.textContent)
 })
 
 profileEditFormCredentials.addEventListener('submit', () => {
@@ -81,77 +84,20 @@ popupRemovers.forEach(popup => {
   })
 })
 
-
-let userId = null
-
-function handleLikeClick(cardElement, cardId, isLike) {
-
-  api.createLikeElement(cardId, isLike)
-    .then((dataCards) => {
-      updateLikes(cardElement, dataCards.likes, userId)
-    })
-    .catch((err) => {
-      console.log('Ошибка: ', err);
-    })
-}
-
-function handleDeleteClick(cardElement, cardId, elementId) {
-
-  api.removeCardElement(cardId, elementId)
-    .then(() => {
-      updateDelete(cardElement, cardId, elementId)
-      cardElement.remove()
-    })
-    .catch((err) => {
-      console.log('Ошибка: ', err);
-    })
-}
-
-const prependCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId) => {
-  const cardCaller = renderElementCard(
-    cardLink, 
-    cardTitle, 
-    likes, 
-    elementId, 
-    ownerIdLikes, 
-    userId, 
-    ownerId, 
-    handleLikeClick, 
-    handleDeleteClick)
-  cardContainer.prepend(cardCaller)
-}
-
-const appendCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId) => {
-  const cardCaller = renderElementCard(
-    cardLink, 
-    cardTitle, 
-    likes, 
-    elementId, 
-    ownerIdLikes, 
-    userId, 
-    ownerId, 
-    handleLikeClick, 
-    handleDeleteClick)
-  cardContainer.append(cardCaller)
+export function renderCard (dataElement) {
+  const card = new Card ({data: dataElement}, '#elements__item-template');
+  const cardNode = card.createNode()
+  cardSection.addItem(cardNode, 'after')
 }
 
 api.acquireAllData()
   .then(([data, cards]) => {
+    userId = data._id
     avatarImage.src = data.avatar
     userInfo.setUserInfo(data.name, data.about)
     userInfo.updateUserInfo()
-    cards.forEach(card => {
-      userId = data._id
-      const ownerId = card.owner._id;
-      const elementId = card._id;
-      const ownerIdLikes = [];
-      const likes = card.likes;
-      likes.forEach(element => {ownerIdLikes.push(element._id)})
-      appendCard(card.link, card.name, likes, userId, ownerId, elementId, ownerIdLikes)
-    })
+    cardSection.renderItems(cards)
   })
   .catch(err => {
     console.log('Ошибка: ', err);
   });
-
-export { prependCard }

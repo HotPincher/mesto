@@ -1,7 +1,7 @@
 export default class UserInfo {
-    constructor (currentAccountName, currentAccountProfession) {
-        this._nameElem = currentAccountName;
-        this._jobElem = currentAccountProfession;
+    constructor (accountName, accountJob) {
+        this._nameElem = accountName;
+        this._jobElem = accountJob;
         this._job = '';
         this._name = '';
     }

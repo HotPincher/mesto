@@ -10,7 +10,7 @@ module.exports = {
     filename: 'main.js',
     publicPath: ''
   },
-  mode: 'development',
+  mode: 'production',
   devServer: {
     static: path.resolve(__dirname, './dist'),
     compress: true,

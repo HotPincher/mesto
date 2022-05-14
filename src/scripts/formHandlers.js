@@ -4,14 +4,15 @@ import {
   popupAccountNewCardModifier,
   avatarImage,
   avatarUrl,
-  currentAccountName,
-  currentAccountProfession,
-  profileEditFormInitialValue1,
-  profileEditFormInitialValue2,
+  accountName,
+  accountJob,
+  formValueName,
+  formValueJob,
 } from './data.js'
-/*import { editAvatar, changeProfileData, createCardElement } from './api.js'*/
+
 import { removePopup } from './popup.js'
-import { prependCard } from '../index.js'
+import { cardSection, api, userInfo, renderCard } from '../index.js'
+
 
 const renderLoading = (isLoading, popup, text) => {
   if (isLoading) {
@@ -26,7 +27,7 @@ const handleAvatarForm = () => {
   const newAvatar = avatarUrl.value
   renderLoading(true, popupAvatarEditModifier, "Сохранение...")
 
-  editAvatar(newAvatar)
+  api.editAvatar(newAvatar)
 
     .then(() => {
       avatarImage.src = newAvatar
@@ -44,16 +45,13 @@ const handleAvatarForm = () => {
 
 const changeProfileCredentials = () => {
 
-  const pendingInputValue1 = profileEditFormInitialValue1.value
-  const pendingInputValue2 = profileEditFormInitialValue2.value
-  
   renderLoading(true, popupAccountEditModifier, "Сохранение...")
 
-  changeProfileData(pendingInputValue1, pendingInputValue2)
+  api.changeProfileData(formValueName.value, formValueJob.value)
 
-    .then(() => {
-      currentAccountName.textContent = pendingInputValue1
-      currentAccountProfession.textContent = pendingInputValue2
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about)
+      userInfo.updateUserInfo()
     })
     .then(() => {
       removePopup(popupAccountEditModifier)
@@ -69,15 +67,11 @@ const changeProfileCredentials = () => {
 const createNewCardCredentials = (cardLink, cardTitle) => {
 
   renderLoading(true, popupAccountNewCardModifier, "Сохранение...")
-  createCardElement(cardLink, cardTitle)
-    .then(data => {
-      const ownerId = data.owner._id;
-      const userId = ownerId
-      const elementId = data._id;
-      const ownerIdLikes = [];
-      const likes = data.likes;
-      likes.forEach(element => { ownerIdLikes.push(element._id) })
-      prependCard(cardLink, cardTitle, likes, userId, ownerId, elementId, ownerIdLikes)
+
+  api.createCardElement(cardLink, cardTitle)
+
+    .then((data) => {
+      renderCard(data, cardSection)
     })
     .then(() => {
       removePopup(popupAccountNewCardModifier)

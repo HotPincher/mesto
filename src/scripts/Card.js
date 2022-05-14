@@ -1,21 +1,23 @@
 import { activatePopup } from './popup.js'
-import { bigPicturePopup, bigPicturePopupImage, bigPicturePopupSpan} from './data.js'
+import { bigPicturePopup, bigPicturePopupImage, bigPicturePopupSpan } from './data.js'
+import { api, userId } from '../index.js'
 export default class Card {
-  constructor ({data}, selector) {
+  constructor({ data }, selector) {
     this._selector = selector
-    this._image = data.src
-    this._heading = data.text
-    this._likes = data.likes  
+    this._userId = userId
+    this._likes = data.likes
+    this._image = data.link
+    this._heading = data.name
     this._ownerId = data.owner._id;
     this._cardId = data._id;
   }
 
   _getItem() {
     const cardCreator = document
-    .querySelector(this._selector)
-    .content
-    .querySelector('.elements__item')
-    .cloneNode(true)
+      .querySelector(this._selector)
+      .content
+      .querySelector('.elements__item')
+      .cloneNode(true)
 
     return cardCreator
   }
@@ -27,59 +29,81 @@ export default class Card {
     this._likeCounter = this._card.querySelector('.elements__like-counter')
     this._likeButton = this._card.querySelector('.elements__like-button')
     this._deleteButton = this._card.querySelector('.elements__delete-button')
-    
     this._cardImage.src = this._image;
     this._cardImage.alt = this._heading;
     this._cardHeading.textContent = this._heading;
-    this._likeCounter.textContent = this._likes.length 
-
+    this._likeCounter.textContent = this._likes.length
+    this._renderLiked()
+    this._renderDelete()
     this._setEventListeners()
 
     return this._card
-    
   }
 
-  _activatePopup () {
+  _activatePopup() {
     bigPicturePopupImage.src = this._image
     bigPicturePopupImage.alt = this._heading
     bigPicturePopupSpan.textContent = this._heading
     activatePopup(bigPicturePopup)
   }
 
-  _isLiked () {
-    return this._likeButton.classList.contains('elements__like-button_active')
-    // return this._likes.some(like => like._id === this.userId)
-  }
-
   _handleImageClick() {
     this._activatePopup()
   }
 
-  _updateLikes() {  
-    if (!this._isLiked()) {
+  _isLikedByMe() {
+    return this._likes.some(like => like._id === this._userId)
+  }
+
+  _renderLiked() {
+    if (this._isLikedByMe()) {
       this._likeButton.classList.add('elements__like-button_active')
-    } else {
-      this._likeButton.classList.remove('elements__like-button_active')
     }
   }
-  
-  _handleLikeClick(isLike) {
-    
-    // createLikeElement(this._cardId, isLike)
-    
-    // .then((dataCards) => {
-        this._updateLikes()
-      // })
-      // .catch((err) => {
-      //   console.log('Ошибка: ', err);
-      // })
+
+  _putLike() {
+
+    api.createLikeElement(this._cardId)
+
+      .then((data) => {
+        this._likeCounter.innerText = data.likes.length
+      })
+      .then(() => {
+        this._likeButton.classList.add('elements__like-button_active')
+      })
+      .catch((err) => {
+        console.log('Ошибка: ', err);
+      })
   }
 
-  _canDelete () {
-    return this.userId !== this._ownerId
+  _removeLike() {
+
+    api.removeLikeElement(this._cardId)
+
+      .then((data) => {
+        this._likeCounter.innerText = data.likes.length
+      })
+      .then(() => {
+        this._likeButton.classList.remove('elements__like-button_active')
+      })
+      .catch((err) => {
+        console.log('Ошибка: ', err);
+      })
   }
 
-  _updateDelete () {
+  _handleLikeClick() {
+    if (this._isLikedByMe()) {
+      this._removeLike()
+    } else {
+      this._putLike()
+    }
+  }
+
+  _canDelete() {
+    return this._userId !== this._ownerId
+  }
+
+  _renderDelete() {
     if (this._canDelete()) {
       this._deleteButton.remove()
     }
@@ -87,9 +111,12 @@ export default class Card {
 
   _handleDeleteClick() {
 
-    removeCardElement(this._cardId, elementId)
+    api.removeCardElement(this._cardId)
+
       .then(() => {
-        this._updateDelete(cardElement, this._cardId, elementId)
+        this._renderDelete()
+      })
+      .then(() => {
         this._card.remove()
       })
       .catch((err) => {
@@ -111,5 +138,5 @@ export default class Card {
       this._handleDeleteClick();
     });
   }
-  
+
 }

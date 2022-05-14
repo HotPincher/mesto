@@ -29,13 +29,13 @@ export default class Api {
       .then(this.validateResponce)
   }
   
-  changeProfileData = (pendingInputValue1, pendingInputValue2) => {
+  changeProfileData = (userName, userJob) => {
   return fetch(`${Api.serverConfig.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: Api.serverConfig.headers,
     body: JSON.stringify({
-      name: pendingInputValue1,
-      about: pendingInputValue2
+      name: userName,
+      about: userJob
     })
   })
     .then(this.validateResponce)
@@ -72,9 +72,17 @@ export default class Api {
     .then(this.validateResponce)
   } 
 
-  createLikeElement (elementId, isLike) {
+  createLikeElement (elementId) {
     return fetch(`${Api.serverConfig.baseUrl}/cards/likes/${elementId}`, {
-      method: !isLike ? 'PUT' : 'DELETE',
+      method: 'PUT',
+      headers: Api.serverConfig.headers,
+    })
+      .then(this.validateResponce)
+  }
+
+  removeLikeElement (elementId) {
+    return fetch(`${Api.serverConfig.baseUrl}/cards/likes/${elementId}`, {
+      method: 'DELETE',
       headers: Api.serverConfig.headers,
     })
       .then(this.validateResponce)

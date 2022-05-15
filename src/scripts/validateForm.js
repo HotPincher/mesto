@@ -19,6 +19,19 @@ export default class FormValidator {
     })
   }
 
+  resetPopup () {
+    this._formElement.reset()
+    this._formElement.querySelectorAll(this._config.inputSelector).forEach(item => {
+      if (item.classList.contains(this._config.inputErrorClass)) {
+        item.classList.remove(this._config.inputErrorClass)
+      }
+    })
+    this._formElement.querySelectorAll(this._config.inputErrorSelector).forEach(item => {
+      item.classList.add(this._config.inputErrorHiddenClass)
+      item.textContent = " "
+    })
+  }
+
   _showInputError = (credentialsInput, errorMessage) => {
     const errorElement = this._formElement.querySelector(`.${credentialsInput.id}-error`);
     credentialsInput.classList.add(this._config.inputErrorClass);

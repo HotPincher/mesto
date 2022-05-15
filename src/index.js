@@ -99,9 +99,8 @@ avatarEditButton.addEventListener('mouseout', function (evt) {
 profileEditButton.addEventListener('click', () => {
   editUserProfile.activatePopup()
   editUserProfile.setEventListeners()
-  const validator = formValidators.profile-edit;
-    validator.disableAllErrors();
-    validator.disableSubmit();
+  formValidators["profile-edit"].disableAllErrors();
+  formValidators["profile-edit"].disableSubmit();
   formValueName.value = accountName.textContent
   formValueJob.value = accountJob.textContent
 })
@@ -110,7 +109,7 @@ profileEditButton.addEventListener('click', () => {
 avatarEditButton.addEventListener('click', () => {
   editUserAvatar.activatePopup()
   editUserAvatar.setEventListeners()
-  const validator = formValidators.avatar-edit;
+  const validator = formValidators["avatar-edit"];
     validator.disableAllErrors();
     validator.disableSubmit();
 })
@@ -118,7 +117,7 @@ avatarEditButton.addEventListener('click', () => {
 newCardCreatorButton.addEventListener('click', () => {
   newCardPopup.activatePopup()
   newCardPopup.setEventListeners()
-  const validator = formValidators.card-edit;
+  const validator = formValidators["card-edit"];
     validator.disableAllErrors();
     validator.disableSubmit();
 })

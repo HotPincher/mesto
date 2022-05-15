@@ -99,6 +99,7 @@ avatarEditButton.addEventListener('mouseout', function (evt) {
 profileEditButton.addEventListener('click', () => {
   editUserProfile.activatePopup()
   editUserProfile.setEventListeners()
+  debugger;
   formValidators["profile-edit"].disableAllErrors();
   formValidators["profile-edit"].disableSubmit();
   formValueName.value = accountName.textContent

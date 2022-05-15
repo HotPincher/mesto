@@ -1,16 +1,32 @@
 import { validationSettings } from "./data.js"
 
-const resetPopup = (formElement) => {
-  formElement.reset()
-  formElement.querySelectorAll(validationSettings.inputSelector).forEach(item => {
-    if (item.classList.contains(validationSettings.inputErrorClass)) {
-      item.classList.remove(validationSettings.inputErrorClass)
-    }
-  })
-  formElement.querySelectorAll(validationSettings.inputErrorSelector).forEach(item => {
-    item.classList.add(validationSettings.inputErrorHiddenClass)
-    item.textContent = " "
-  })
+export default class FormValidator {
+  constructor (validationSettings, formElement) {
+    this._validationSettings = validationSettings;
+    this._formElement = formElement;
+    this._formFieldList = Array.from(this._formElement.querySelectorAll(this._validationSettings.formField));
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._validationSettings.inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._validationSettings.submitButtonSelector);
+  } 
+  disableSubmit() {
+    this._buttonElement.classList.add(this._validationSettings.inactiveButtonClass);
+    this._buttonElement.disabled = true;
+  }
+
+  disableAllErrors() {
+    this._formFieldList.forEach((formField) => {
+      const inputElement = formField.querySelector(this._options.inputSelector);
+      this._hideInputError(inputElement);
+    })
+  }
+
+  _showInputError = (credentialsInput, errorMessage) => {
+    const errorElement = this._formElement.querySelector(`.${credentialsInput.id}-error`);
+    credentialsInput.classList.add(this._validationSettings.inputErrorClass);
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add(this._validationSettings.errorClass);
+  };
+
 }
 
 const showInputError = (formSet, credentialsInput, errorMessage, config) => {
@@ -26,6 +42,21 @@ const hideInputError = (formSet, credentialsInput, config) => {
   errorElement.classList.add(config.inputErrorHiddenClass)
   errorElement.textContent = " "
 }
+
+const resetPopup = (formElement) => {
+  formElement.reset()
+  formElement.querySelectorAll(validationSettings.inputSelector).forEach(item => {
+    if (item.classList.contains(validationSettings.inputErrorClass)) {
+      item.classList.remove(validationSettings.inputErrorClass)
+    }
+  })
+  formElement.querySelectorAll(validationSettings.inputErrorSelector).forEach(item => {
+    item.classList.add(validationSettings.inputErrorHiddenClass)
+    item.textContent = " "
+  })
+}
+
+
 
 const validateForm = (formSet, credentialsInput, config) => {
   if (!credentialsInput.validity.valid) {
@@ -51,11 +82,6 @@ const toggleSubmit = (inputList, buttonElement, config) => {
   }
 }
 
-const disableSubmit = (submitElement) => {
-  const button = submitElement.querySelector('.credentials__submit-button')
-  button.classList.add('credentials__submit-button_disabled')
-  button.setAttribute('disabled', 'true')
-}
 
 const setEventListener = (formSet, config) => {
   const inputItems = Array.from(formSet.querySelectorAll(config.inputSelector))

@@ -6,7 +6,7 @@ export default class FormValidator {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
     this._buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
   } 
-  
+
   disableSubmit() {
     this._buttonElement.classList.add(this._config.inactiveButtonClass);
     this._buttonElement.disabled = true;
@@ -81,7 +81,7 @@ export default class FormValidator {
 }
 
 
-
+/*
 const resetPopup = (formElement) => {
   formElement.reset()
   formElement.querySelectorAll(validationSettings.inputSelector).forEach(item => {
@@ -94,4 +94,4 @@ const resetPopup = (formElement) => {
     item.textContent = " "
   })
 }
-
+*/

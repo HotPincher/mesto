@@ -1,8 +1,10 @@
-import { activatePopup } from './popup.js'
-import { bigPicturePopup, bigPicturePopupImage, bigPicturePopupSpan } from './data.js'
+
 import { api, userId } from '../index.js'
+import PopupWithImage from './PopupWithImage.js'
+import Popup from './Popup.js'
 export default class Card {
   constructor({ data }, selector) {
+    this._data = data
     this._selector = selector
     this._userId = userId
     this._likes = data.likes
@@ -40,15 +42,10 @@ export default class Card {
     return this._card
   }
 
-  _activatePopup() {
-    bigPicturePopupImage.src = this._image
-    bigPicturePopupImage.alt = this._heading
-    bigPicturePopupSpan.textContent = this._heading
-    activatePopup(bigPicturePopup)
-  }
-
   _handleImageClick() {
-    this._activatePopup()
+    const bitPicturePopup = new PopupWithImage(Popup.popupselectors.popupBigPicture)
+    bitPicturePopup.setEventListeners()
+    bitPicturePopup.activatePopup(this._data)
   }
 
   _isLikedByMe() {
@@ -66,6 +63,7 @@ export default class Card {
     api.createLikeElement(this._cardId)
 
       .then((data) => {
+        this._likes = data.likes
         this._likeCounter.innerText = data.likes.length
       })
       .then(() => {
@@ -81,6 +79,7 @@ export default class Card {
     api.removeLikeElement(this._cardId)
 
       .then((data) => {
+        this._likes = data.likes
         this._likeCounter.innerText = data.likes.length
       })
       .then(() => {

@@ -1,87 +1,89 @@
-import {
-  popupAvatarEditModifier,
-  popupAccountEditModifier,
-  popupAccountNewCardModifier,
-  avatarImage,
-  avatarUrl,
-  accountName,
-  accountJob,
-  formValueName,
-  formValueJob,
-} from './data.js'
+// import {
+//   popupAvatarEditModifier,
+//   popupAccountEditModifier,
+//   popupAccountNewCardModifier,
+//   avatarImage,
+//   avatarUrl,
+//   accountName,
+//   accountJob,
+//   formValueName,
+//   formValueJob,
+// } from './data.js'
 
-import { removePopup } from './popup.js'
-import { cardSection, api, userInfo, renderCard } from '../index.js'
+// // import { removePopup } from './Popup.js'
+// import { cardSection, api, userInfo, renderCard } from '../index.js'
+// import { editUserPopup, editAvatarPopup, createCardPopup } from '../index.js'
+
+// const renderLoading = (isLoading, popup, text) => {
+//   if (isLoading) {
+//     popup.querySelector('.credentials__submit-button').innerText = text
+//   } else {
+//     popup.querySelector('.credentials__submit-button').innerText = text
+//   }
+// }
+
+// const handleAvatarForm = () => {
 
 
-const renderLoading = (isLoading, popup, text) => {
-  if (isLoading) {
-    popup.querySelector('.credentials__submit-button').innerText = text
-  } else {
-    popup.querySelector('.credentials__submit-button').innerText = text
-  }
-}
+//   renderLoading(true, popupAvatarEditModifier, "Сохранение...")
+  
+//   const newAvatar = avatarUrl.value
+//   api.editAvatar(newAvatar)
 
-const handleAvatarForm = () => {
+//     .then(() => {
 
-  const newAvatar = avatarUrl.value
-  renderLoading(true, popupAvatarEditModifier, "Сохранение...")
+//       avatarImage.src = newAvatar
+//     })
+//     .then(() => {
+//       editAvatarPopup.removePopup()
+//     })
+//     .catch((err) => {
+//       console.log('Ошибка: ', err);
+//     })
+//     .finally(() => {
+//       renderLoading(false, popupAvatarEditModifier, "Сохранить")
+//     })
+// }
 
-  api.editAvatar(newAvatar)
+// const changeProfileCredentials = () => {
 
-    .then(() => {
-      avatarImage.src = newAvatar
-    })
-    .then(() => {
-      removePopup(popupAvatarEditModifier)
-    })
-    .catch((err) => {
-      console.log('Ошибка: ', err);
-    })
-    .finally(() => {
-      renderLoading(false, popupAvatarEditModifier, "Сохранить")
-    })
-}
+//   renderLoading(true, popupAccountEditModifier, "Сохранение...")
 
-const changeProfileCredentials = () => {
+//   api.changeProfileData(formValueName.value, formValueJob.value)
 
-  renderLoading(true, popupAccountEditModifier, "Сохранение...")
+//     .then((data) => {
+//       userInfo.setUserInfo(data.name, data.about)
+//       userInfo.updateUserInfo()
+//     })
+//     .then(() => {
+//       editUserPopup.removePopup()
+//     })
+//     .catch((err) => {
+//       console.log('Ошибка: ', err);
+//     })
+//     .finally(() => {
+//       renderLoading(false, popupAccountEditModifier, "Сохранить")
+//     })
+// }
 
-  api.changeProfileData(formValueName.value, formValueJob.value)
+// const createNewCardCredentials = (cardLink, cardTitle) => {
 
-    .then((data) => {
-      userInfo.setUserInfo(data.name, data.about)
-      userInfo.updateUserInfo()
-    })
-    .then(() => {
-      removePopup(popupAccountEditModifier)
-    })
-    .catch((err) => {
-      console.log('Ошибка: ', err);
-    })
-    .finally(() => {
-      renderLoading(false, popupAccountEditModifier, "Сохранить")
-    })
-}
+//   renderLoading(true, popupAccountNewCardModifier, "Сохранение...")
 
-const createNewCardCredentials = (cardLink, cardTitle) => {
+//   api.createCardElement(cardLink, cardTitle)
 
-  renderLoading(true, popupAccountNewCardModifier, "Сохранение...")
+//     .then((data) => {
+//       renderCard(data, cardSection)
+//     })
+//     .then(() => {
+//       createCardPopup.removePopup()
+//     })
+//     .catch((err) => {
+//       console.log('Ошибка: ', err);
+//     })
+//     .finally(() => {
+//       renderLoading(false, popupAccountNewCardModifier, "Создать")
+//     })
+// }
 
-  api.createCardElement(cardLink, cardTitle)
-
-    .then((data) => {
-      renderCard(data, cardSection)
-    })
-    .then(() => {
-      removePopup(popupAccountNewCardModifier)
-    })
-    .catch((err) => {
-      console.log('Ошибка: ', err);
-    })
-    .finally(() => {
-      renderLoading(false, popupAccountNewCardModifier, "Создать")
-    })
-}
-
-export { handleAvatarForm, changeProfileCredentials, createNewCardCredentials }
+// export { handleAvatarForm, changeProfileCredentials, createNewCardCredentials }

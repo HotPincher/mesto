@@ -5,6 +5,7 @@ import Card from './scripts/Card.js'
 import Section from './scripts/Section.js'
 import Popup from './scripts/Popup.js'
 import PopupWithForm from './scripts/PopupWithForm.js';
+import FormValidator from './scripts/validateForm.js';
 
 import {
   accountName,
@@ -25,12 +26,14 @@ import {
   newCardPlace,
   newCardUrl,
   avatarUrl,
+  validationSettings,
 } from './scripts/data.js'
 import { disableSubmit, resetPopup } from './scripts/validateForm.js'
 
 export const api = new Api ();
 export const userInfo = new UserInfo (accountName, accountJob)
 export const cardSection = new Section (renderCard, '.elements')
+
 export let userId = null
 
 export const editUserAvatar = new PopupWithForm (Popup.popupselectors.popupAvatar,
@@ -96,8 +99,8 @@ avatarEditButton.addEventListener('mouseout', function (evt) {
 profileEditButton.addEventListener('click', () => {
   editUserProfile.activatePopup()
   editUserProfile.setEventListeners()
-  disableSubmit(popupAccountEditModifier)
-  resetPopup(profileEditFormCredentials)
+  formValidators["profile-edit"].resetPopup();
+  formValidators["profile-edit"].disableSubmit();
   formValueName.value = accountName.textContent
   formValueJob.value = accountJob.textContent
 })
@@ -106,15 +109,17 @@ profileEditButton.addEventListener('click', () => {
 avatarEditButton.addEventListener('click', () => {
   editUserAvatar.activatePopup()
   editUserAvatar.setEventListeners()
-  disableSubmit(popupAvatarEditModifier)
-  resetPopup(profileAvatarEditFormCredentials)
+  const validator = formValidators["avatar-edit"];
+    validator.resetPopup();
+    validator.disableSubmit();
 })
 
 newCardCreatorButton.addEventListener('click', () => {
   newCardPopup.activatePopup()
   newCardPopup.setEventListeners()
-  disableSubmit(popupAccountNewCardModifier)
-  resetPopup(profileNewCardFormCredentials)
+  const validator = formValidators["card-edit"];
+    validator.resetPopup();
+    validator.disableSubmit();
 })
 
 // popupRemovers.forEach(popup => {
@@ -142,3 +147,22 @@ api.acquireAllData()
   .catch(err => {
     console.log('Ошибка: ', err);
   });
+
+
+const formValidators = {}
+
+// Включение валидации
+const enableValidation = (validationSettings) => {
+  const formList = Array.from(document.querySelectorAll(validationSettings.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(validationSettings, formElement)
+// получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name')
+
+    // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(validationSettings);

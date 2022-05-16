@@ -33,12 +33,11 @@ export const userInfo = new UserInfo (accountName, accountJob)
 export const cardSection = new Section (renderCard, '.elements')
 export let userId = null
 
-export const editUserAvatar = new PopupWithForm (Popup.popupselectors.popupAvatar,
-  () => {
+export const editUserAvatar = new PopupWithForm (Popup.popupselectors.popupAvatar, (data) => {
 
     const newAvatar = avatarUrl.value
     
-    return api.editAvatar(newAvatar)
+    return api.editAvatar(data[newAvatar])
 
     .then((data) => {
       avatarImage.src = data.avatar
@@ -49,8 +48,7 @@ export const editUserAvatar = new PopupWithForm (Popup.popupselectors.popupAvata
   }
 )
 
-export const newCardPopup = new PopupWithForm (Popup.popupselectors.popupNewCard,
-  () => {
+export const newCardPopup = new PopupWithForm (Popup.popupselectors.popupNewCard, () => {
 
   const currentInputPlace = newCardPlace.value
   const currentInputUrl = newCardUrl.value
@@ -68,8 +66,7 @@ export const newCardPopup = new PopupWithForm (Popup.popupselectors.popupNewCard
   }
 )
 
-export const editUserProfile = new PopupWithForm (Popup.popupselectors.popupEditProfile,
-  () => {
+export const editUserProfile = new PopupWithForm (Popup.popupselectors.popupEditProfile, () => {
       
       return api.changeProfileData(formValueName.value, formValueJob.value)
   

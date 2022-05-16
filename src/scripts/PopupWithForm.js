@@ -51,6 +51,7 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener('submit', (evt) => {
 
       this._renderLoading("Сохранение...")
+
       this._formType(this._getInputValues())
 
       .then(() => {

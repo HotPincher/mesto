@@ -1,4 +1,4 @@
-import { enableValidation } from './validateForm.js'
+import { enableValidation } from './FormValidator.js'
 import { validationSettings } from './data.js'
 export default class Popup {
   static popupselectors = {

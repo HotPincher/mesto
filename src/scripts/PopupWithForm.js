@@ -1,9 +1,6 @@
 import Popup from "./Popup.js"
-import { api } from "../index.js";
-import { avatarImage, avatarUrl } from "./data.js";
-
 export default class PopupWithForm extends Popup {
-  constructor (selector, formType) {
+  constructor(selector, formType) {
     super(selector)
     this._formType = formType;
     this._form = this._popup.querySelector('.credentials');
@@ -21,6 +18,7 @@ export default class PopupWithForm extends Popup {
   putInputValues(data) {
     this._inputList.forEach((input) => {
       input.value = data[input.name];
+      console.log(data[input.name])
     });
   }
 
@@ -31,12 +29,12 @@ export default class PopupWithForm extends Popup {
   removePopup() {
     super.removePopup()
   }
-  
+
   _removePopupByEsc() {
     super._removePopupByEsc()
   }
 
-  _renderLoading (text) {
+  _renderLoading(text) {
     if (this.isLoading) {
       this._popup.querySelector('.credentials__submit-button').innerText = text
     } else {
@@ -44,7 +42,7 @@ export default class PopupWithForm extends Popup {
     }
   }
 
-  setEventListeners () {
+  setEventListeners() {
 
     super.setEventListeners()
 
@@ -54,15 +52,15 @@ export default class PopupWithForm extends Popup {
 
       this._formType(this._getInputValues())
 
-      .then(() => {
-        this.removePopup()
-      })
-      .catch((err) => {
-        console.log('Ошибка: ', err);
-      })
-      .finally(() => {
-        this._renderLoading("Сохранить")
-      })
+        .then(() => {
+          this.removePopup()
+        })
+        .catch((err) => {
+          console.log('Ошибка: ', err);
+        })
+        .finally(() => {
+          this._renderLoading("Сохранить")
+        })
     })
   }
 }

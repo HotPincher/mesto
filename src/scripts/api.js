@@ -7,72 +7,72 @@ export default class Api {
     }
   }
 
-  constructor () {
+  constructor() {
 
   }
 
-  validateResponce (res) { 
-    return res.ok ? res.json() : Promise.reject(`Промиса не будет ${res.status}`) 
+  validateResponce(res) {
+    return res.ok ? res.json() : Promise.reject(`Промиса не будет ${res.status}`)
   }
-  
-  acquireUserData () {
+
+  acquireUserData() {
     return fetch(`${Api.serverConfig.baseUrl}/users/me`, {
       headers: Api.serverConfig.headers,
     })
       .then(this.validateResponce)
   }
-  
-  loadCards () {
+
+  loadCards() {
     return fetch(`${Api.serverConfig.baseUrl}/cards`, {
       headers: Api.serverConfig.headers,
     })
       .then(this.validateResponce)
   }
-  
-  changeProfileData = (userName, userJob) => {
-  return fetch(`${Api.serverConfig.baseUrl}/users/me`, {
-    method: 'PATCH',
-    headers: Api.serverConfig.headers,
-    body: JSON.stringify({
-      name: userName,
-      about: userJob
-    })
-  })
-    .then(this.validateResponce)
-  }
-  
-  editAvatar (newAvatar) {
-  return fetch(`${Api.serverConfig.baseUrl}/users/me/avatar`, {
-    method: 'PATCH',
-    headers: Api.serverConfig.headers,
-    body: JSON.stringify({
-    avatar: newAvatar
-    })
-  })
-    .then(this.validateResponce)
-  }
-  
-  createCardElement (cardLink, cardTitle) {
-  return fetch(`${Api.serverConfig.baseUrl}/cards`, {
-    method: 'POST',
-    headers: Api.serverConfig.headers,
-    body: JSON.stringify({
-      name: cardTitle,
-      link: cardLink,
-    })
-  })
-    .then(this.validateResponce)
-  }
-  
-  removeCardElement (elementId) {
-  return fetch(`${Api.serverConfig.baseUrl}/cards/${elementId}`, {
-    method: 'DELETE',
-    headers: Api.serverConfig.headers,
-  })
-    .then(this.validateResponce)
-  } 
 
-  createLikeElement (elementId) {
+  changeProfileData = (userName, userJob) => {
+    return fetch(`${Api.serverConfig.baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: Api.serverConfig.headers,
+      body: JSON.stringify({
+        name: userName,
+        about: userJob
+      })
+    })
+      .then(this.validateResponce)
+  }
+
+  editAvatar(newAvatar) {
+    return fetch(`${Api.serverConfig.baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: Api.serverConfig.headers,
+      body: JSON.stringify({
+        avatar: newAvatar
+      })
+    })
+      .then(this.validateResponce)
+  }
+
+  createCardElement(cardLink, cardTitle) {
+    return fetch(`${Api.serverConfig.baseUrl}/cards`, {
+      method: 'POST',
+      headers: Api.serverConfig.headers,
+      body: JSON.stringify({
+        name: cardTitle,
+        link: cardLink,
+      })
+    })
+      .then(this.validateResponce)
+  }
+
+  removeCardElement(elementId) {
+    return fetch(`${Api.serverConfig.baseUrl}/cards/${elementId}`, {
+      method: 'DELETE',
+      headers: Api.serverConfig.headers,
+    })
+      .then(this.validateResponce)
+  }
+
+  createLikeElement(elementId) {
     return fetch(`${Api.serverConfig.baseUrl}/cards/likes/${elementId}`, {
       method: 'PUT',
       headers: Api.serverConfig.headers,
@@ -80,7 +80,7 @@ export default class Api {
       .then(this.validateResponce)
   }
 
-  removeLikeElement (elementId) {
+  removeLikeElement(elementId) {
     return fetch(`${Api.serverConfig.baseUrl}/cards/likes/${elementId}`, {
       method: 'DELETE',
       headers: Api.serverConfig.headers,
@@ -88,7 +88,7 @@ export default class Api {
       .then(this.validateResponce)
   }
 
-  acquireAllData () {
-  return Promise.all([this.acquireUserData(), this.loadCards()])
+  acquireAllData() {
+    return Promise.all([this.acquireUserData(), this.loadCards()])
   }
 }

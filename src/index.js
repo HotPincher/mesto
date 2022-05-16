@@ -1,3 +1,8 @@
+// В подготовке проекта участвовали :
+// Александр Панков
+// Павел Сенчуров
+
+
 import './styles/index.css';
 import Api from './scripts/Api.js'
 import UserInfo from './scripts/UserInfo'

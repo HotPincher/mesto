@@ -1,14 +1,8 @@
 export default class Api {
-  static serverConfig = {
-    baseUrl: "https://nomoreparties.co/v1/plus-cohort-8",
-    headers: {
-      "Authorization": "46fd1b2f-0142-4390-8d44-7cfab5387a15",
-      "Content-Type": "application/json"
-    }
-  }
 
-  constructor() {
-
+  constructor(config) {
+    this._baseURl = config.baseUrl;
+    this._headers = config.headers;
   }
 
   validateResponce(res) {
@@ -16,23 +10,23 @@ export default class Api {
   }
 
   acquireUserData() {
-    return fetch(`${Api.serverConfig.baseUrl}/users/me`, {
-      headers: Api.serverConfig.headers,
+    return fetch(`${this._baseURl}/users/me`, {
+      headers: this._headers,
     })
       .then(this.validateResponce)
   }
 
   loadCards() {
-    return fetch(`${Api.serverConfig.baseUrl}/cards`, {
-      headers: Api.serverConfig.headers,
+    return fetch(`${this._baseURl}/cards`, {
+      headers: this._headers,
     })
       .then(this.validateResponce)
   }
 
   changeProfileData = (userName, userJob) => {
-    return fetch(`${Api.serverConfig.baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: Api.serverConfig.headers,
+      headers: this._headers,
       body: JSON.stringify({
         name: userName,
         about: userJob
@@ -42,9 +36,9 @@ export default class Api {
   }
 
   editAvatar(newAvatar) {
-    return fetch(`${Api.serverConfig.baseUrl}/users/me/avatar`, {
+    return fetch(`${this._baseURl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: Api.serverConfig.headers,
+      headers: this._headers,
       body: JSON.stringify({
         avatar: newAvatar
       })
@@ -53,9 +47,9 @@ export default class Api {
   }
 
   createCardElement(cardLink, cardTitle) {
-    return fetch(`${Api.serverConfig.baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: Api.serverConfig.headers,
+      headers: this._headers,
       body: JSON.stringify({
         name: cardTitle,
         link: cardLink,
@@ -65,25 +59,25 @@ export default class Api {
   }
 
   removeCardElement(elementId) {
-    return fetch(`${Api.serverConfig.baseUrl}/cards/${elementId}`, {
+    return fetch(`${this._baseURl}/cards/${elementId}`, {
       method: 'DELETE',
-      headers: Api.serverConfig.headers,
+      headers: this._headers,
     })
       .then(this.validateResponce)
   }
 
   createLikeElement(elementId) {
-    return fetch(`${Api.serverConfig.baseUrl}/cards/likes/${elementId}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${elementId}`, {
       method: 'PUT',
-      headers: Api.serverConfig.headers,
+      headers: this._headers,
     })
       .then(this.validateResponce)
   }
 
   removeLikeElement(elementId) {
-    return fetch(`${Api.serverConfig.baseUrl}/cards/likes/${elementId}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${elementId}`, {
       method: 'DELETE',
-      headers: Api.serverConfig.headers,
+      headers: this._headers,
     })
       .then(this.validateResponce)
   }

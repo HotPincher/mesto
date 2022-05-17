@@ -25,9 +25,10 @@ import {
   newCardUrl,
   avatarUrl,
   validationSettings,
+  serverConfig,
 } from './scripts/data.js'
 
-export const api = new Api();
+export const api = new Api(serverConfig);
 export const userInfo = new UserInfo(accountName, accountJob)
 export const cardSection = new Section(renderCard, '.elements')
 export let userId = null

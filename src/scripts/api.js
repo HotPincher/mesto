@@ -1,7 +1,7 @@
 export default class Api {
 
   constructor(config) {
-    this._baseURl = config.baseUrl;
+    this._baseUrl = config.baseUrl;
     this._headers = config.headers;
   }
 
@@ -10,14 +10,14 @@ export default class Api {
   }
 
   acquireUserData() {
-    return fetch(`${this._baseURl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
       .then(this.validateResponce)
   }
 
   loadCards() {
-    return fetch(`${this._baseURl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
       .then(this.validateResponce)
@@ -36,7 +36,7 @@ export default class Api {
   }
 
   editAvatar(newAvatar) {
-    return fetch(`${this._baseURl}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -59,7 +59,7 @@ export default class Api {
   }
 
   removeCardElement(elementId) {
-    return fetch(`${this._baseURl}/cards/${elementId}`, {
+    return fetch(`${this._baseUrl}/cards/${elementId}`, {
       method: 'DELETE',
       headers: this._headers,
     })

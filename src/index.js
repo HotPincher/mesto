@@ -13,6 +13,7 @@ import PopupWithForm from './scripts/PopupWithForm.js';
 import FormValidator from './scripts/FormValidator.js';
 
 import {
+  popupSelectors,
   accountName,
   accountJob,
   avatarImage,
@@ -32,7 +33,7 @@ export const api = new Api(serverConfig);
 export const userInfo = new UserInfo(accountName, accountJob)
 export const cardSection = new Section(renderCard, '.elements')
 export let userId = null
-export const editUserAvatar = new PopupWithForm(Popup.popupselectors.popupAvatar, () => {
+export const editUserAvatar = new PopupWithForm(popupSelectors.popupAvatar, () => {
 
   return api.editAvatar(avatarUrl.value)
 
@@ -45,7 +46,7 @@ export const editUserAvatar = new PopupWithForm(Popup.popupselectors.popupAvatar
 }
 )
 
-export const newCardPopup = new PopupWithForm(Popup.popupselectors.popupNewCard, () => {
+export const newCardPopup = new PopupWithForm(popupSelectors.popupNewCard, () => {
 
   return api.createCardElement(newCardUrl.value, newCardPlace.value)
 
@@ -58,7 +59,7 @@ export const newCardPopup = new PopupWithForm(Popup.popupselectors.popupNewCard,
 }
 )
 
-export const editUserProfile = new PopupWithForm(Popup.popupselectors.popupEditProfile, () => {
+export const editUserProfile = new PopupWithForm(popupSelectors.popupEditProfile, () => {
 
   return api.changeProfileData(formValueName.value, formValueJob.value)
 

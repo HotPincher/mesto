@@ -1,12 +1,6 @@
 import { enableValidation } from './FormValidator.js'
 import { validationSettings } from './data.js'
 export default class Popup {
-  static popupselectors = {
-    popupAvatar: '#avatarEditPopup',
-    popupNewCard: '#newCardPopup',
-    popupEditProfile: '#profileEditPopup',
-    popupBigPicture: '#big-picture-popup'
-  }
   
   constructor(selector) {
     this._popup = document.querySelector(selector)

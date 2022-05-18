@@ -4,7 +4,6 @@ export default class PopupWithForm extends Popup {
     super(selector)
     this._formType = formType;
     this._form = this._popup.querySelector('.credentials');
-    console.log(this._form)
     this._formInput = {};
     this._inputList = [...this._form];
   }

@@ -2,6 +2,7 @@
 import { api, userId } from '../index.js'
 import PopupWithImage from './PopupWithImage.js'
 import Popup from './Popup.js'
+import { popupSelectors } from './data.js'
 export default class Card {
   constructor({ data }, selector) {
     this._data = data
@@ -43,7 +44,7 @@ export default class Card {
   }
 
   _handleImageClick() {
-    const bitPicturePopup = new PopupWithImage(Popup.popupselectors.popupBigPicture)
+    const bitPicturePopup = new PopupWithImage(popupSelectors.popupBigPicture)
     bitPicturePopup.setEventListeners()
     bitPicturePopup.activatePopup(this._data)
   }

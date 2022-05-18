@@ -1,6 +1,5 @@
 .popup {
   display: flex;
-  max-width: 882px;
   box-sizing: border-box;
   max-height: 100%;
   margin: 0 auto;

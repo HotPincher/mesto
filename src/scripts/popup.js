@@ -1,16 +1,9 @@
 import { enableValidation } from './FormValidator.js'
 import { validationSettings } from './data.js'
 export default class Popup {
-  static popupselectors = {
-    popupAvatar: '#avatarEditPopup',
-    popupNewCard: '#newCardPopup',
-    popupEditProfile: '#profileEditPopup',
-    popupBigPicture: '#big-picture-popup'
-  }
   
   constructor(selector) {
     this._popup = document.querySelector(selector)
-    this._popupCloseButton = document.querySelector('.popup__close-button')
   }
 
   activatePopup () {
@@ -32,12 +25,9 @@ export default class Popup {
   }
 
   setEventListeners () {
-    this._popupCloseButton.addEventListener('click', () => {
-      this.removePopup()
-    })
     this._popup.addEventListener('mousedown', (evt) => {
-      if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) {
-      this.removePopup()
+      if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__structure-wrapper') || evt.target.classList.contains('popup__close-button')) 
+      {this.removePopup()
       }
     })
   }

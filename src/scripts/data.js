@@ -1,3 +1,10 @@
+const popupSelectors = {
+  popupAvatar: '#avatarEditPopup',
+  popupNewCard: '#newCardPopup',
+  popupEditProfile: '#profileEditPopup',
+  popupBigPicture: '#big-picture-popup'
+}
+
 const serverConfig = {
   baseUrl: "https://nomoreparties.co/v1/plus-cohort-8",
   headers: {
@@ -69,6 +76,7 @@ const validationSettings = {
 }
 
 export {
+  popupSelectors,
   accountName,
   accountJob,
   profileEditButton,

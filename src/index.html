@@ -17,15 +17,7 @@
       <section class="profile">
         <div class="profile__wrapper">
           <div class="profile__avatar-wrapper">
-            <button type="button" class="button profile__avatar-swapper">
-              <svg class="profile__avatar-swapper-icon" width="26" height="26" viewbox="0 0 26 26" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M26 3.45351L6.76981 22.7932L3.33585 19.2903L22.517 0L26 3.45351ZM0 26L5.10189 24.4706L1.52075 21.0171L0 26Z"
-                  fill="currentcolor" />
-              </svg>
-              <img class="profile__avatar-overlay" src="<%=require('./images/myavatar.jpg')%>" alt="Аватар пользователя">
-            </button>
+            <button type="button" class="button profile__avatar-swapper"></button>
           </div>
           <div class="profile__about">
             <h1 class="profile__title"></h1>
@@ -106,7 +98,7 @@
           <input id="avatar-input" class="credentials__user-input" type="url" name="avatar"
             placeholder="Ссылка на аватар" value="" required />
           <span class="credentials__input-error credentials__input-error_upper avatar-input-error"></span>
-          <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сохранить</button>
+          <button type="submit" class="button credentials__submit-button" name="submit-credentials">Сменить аватар</button>
         </form>
       </div>
     </div>

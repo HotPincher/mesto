@@ -1,47 +1,32 @@
 import Popup from "./Popup.js"
+
 export default class PopupWithForm extends Popup {
-  constructor(selector, formType) {
+  constructor(selector, handleSubmit) {
     super(selector)
-    this._formType = formType;
+    this._handleSubmit = handleSubmit;
     this._form = this._popup.querySelector('.credentials');
     this._formInput = {};
     this._inputList = [...this._form];
+    this._submitButton = this._popup.querySelector('.credentials__submit-button')
   }
 
   _getInputValues() {
     this._inputList.forEach(element => {
-      this._formInput[element.name] = element.value;
+     this._formInput[element.name] = element.value;
     });
-  }
-
-  putInputValues(data) {
-    this._inputList.forEach((input) => {
-      input.value = data[input.name];
-      console.log(data[input.name])
-    });
-  }
-
-  activatePopup() {
-    super.activatePopup()
+    return this._formInput
   }
 
   removePopup() {
     super.removePopup()
-  }
-
-  _removePopupByEsc() {
-    super._removePopupByEsc()
+    this._form.reset()
   }
 
   _renderLoading(text) {
-    if (this.isLoading) {
-      this._popup.querySelector('.credentials__submit-button').innerText = text
-    } else {
-      this._popup.querySelector('.credentials__submit-button').innerText = text
-    }
+    this._submitButton.innerText = text
   }
 
-  setEventListeners() {
+  setEventListeners(text) {
 
     super.setEventListeners()
 
@@ -49,7 +34,7 @@ export default class PopupWithForm extends Popup {
 
       this._renderLoading("Сохранение...")
 
-      this._formType(this._getInputValues())
+      this._handleSubmit(this._getInputValues())
 
         .then(() => {
           this.removePopup()
@@ -58,7 +43,7 @@ export default class PopupWithForm extends Popup {
           console.log('Ошибка: ', err);
         })
         .finally(() => {
-          this._renderLoading("Сохранить")
+          this._renderLoading(text)
         })
     })
   }

@@ -46,7 +46,7 @@ export default class Api {
       .then(this.validateResponce)
   }
 
-  createCardElement(cardLink, cardTitle) {
+  createCardElement(cardTitle, cardLink) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,

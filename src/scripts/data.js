@@ -5,6 +5,21 @@ const popupSelectors = {
   popupBigPicture: '#big-picture-popup'
 }
 
+const cardConfig = {
+  cardImageSelector : '.elements__image',
+  cardHeadingSelector : '.elements__heading',
+  likeCounterSelector : '.elements__like-counter',
+  likeButtonSelector : '.elements__like-button',
+  deleteButtonSelector: '.elements__delete-button',
+  likeButtonActiveState: 'elements__like-button_active',
+}
+
+const bigPictureConfig = {
+  // bigPicturePopupSelector : '#big-picture-popup',
+  bigPicturePopupImageSelector: '.big-picture__image',
+  bigPicturePopupSpanSelector: '.big-picture__tag',
+}
+
 const serverConfig = {
   baseUrl: "https://nomoreparties.co/v1/plus-cohort-8",
   headers: {
@@ -35,7 +50,7 @@ const popupAccountEditModifier = document.querySelector('#profileEditPopup')
 // EDITING AVATAR
 
 const popupAvatarEditModifier = document.querySelector('#avatarEditPopup')
-const avatarImage = document.querySelector('.profile__avatar-overlay')
+const avatarImage = document.querySelector('.profile__avatar-wrapper')
 
 // NEW CARD POPUP
 
@@ -48,9 +63,9 @@ const cardFromTemplate = document.querySelector('#elements__item-template').cont
 
 // BIG PICTURE POPUP
 
-const bigPicturePopup = document.querySelector('#big-picture-popup')
-const bigPicturePopupImage = bigPicturePopup.querySelector('.big-picture__image')
-const bigPicturePopupSpan = bigPicturePopup.querySelector('.big-picture__tag')
+// const bigPicturePopup = document.querySelector('#big-picture-popup')
+// const bigPicturePopupImage = bigPicturePopup.querySelector('.big-picture__image')
+// const bigPicturePopupSpan = bigPicturePopup.querySelector('.big-picture__tag')
 
 // FORMS
 
@@ -88,9 +103,10 @@ export {
   popupAccountNewCardModifier,
   cardContainer,
   cardFromTemplate,
-  bigPicturePopup,
-  bigPicturePopupImage,
-  bigPicturePopupSpan,
+  bigPictureConfig,
+  // bigPicturePopup,
+  // bigPicturePopupImage,
+  // bigPicturePopupSpan,
   profileEditFormCredentials,
   profileAvatarEditFormCredentials,
   profileNewCardFormCredentials,
@@ -102,4 +118,5 @@ export {
   avatarImage,
   validationSettings,
   serverConfig,
+  cardConfig,
 }

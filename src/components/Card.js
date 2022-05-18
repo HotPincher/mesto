@@ -1,11 +1,11 @@
-
+// import PopupWithImage from './PopupWithImage.js'
+// import { bigPictureConfig, popupSelectors, cardSelectors } from '../scripts/data.js'
 import { api, userId } from '../index.js'
-import PopupWithImage from './PopupWithImage.js'
-import Popup from './Popup.js'
-import { popupSelectors } from './data.js'
+
 export default class Card {
-  constructor({ data }, selector) {
+  constructor({ data }, config, selector) {
     this._data = data
+    this._config = config
     this._selector = selector
     this._userId = userId
     this._likes = data.likes
@@ -27,11 +27,11 @@ export default class Card {
 
   createNode() {
     this._card = this._getItem()
-    this._cardImage = this._card.querySelector('.elements__image')
-    this._cardHeading = this._card.querySelector('.elements__heading')
-    this._likeCounter = this._card.querySelector('.elements__like-counter')
-    this._likeButton = this._card.querySelector('.elements__like-button')
-    this._deleteButton = this._card.querySelector('.elements__delete-button')
+    this._cardImage = this._card.querySelector(this._config.cardImageSelector)
+    this._cardHeading = this._card.querySelector(this._config.cardHeadingSelector)
+    this._likeCounter = this._card.querySelector(this._config.likeCounterSelector)
+    this._likeButton = this._card.querySelector(this._config.likeButtonSelector)
+    this._deleteButton = this._card.querySelector(this._config.deleteButtonSelector)
     this._cardImage.src = this._image;
     this._cardImage.alt = this._heading;
     this._cardHeading.textContent = this._heading;
@@ -43,11 +43,16 @@ export default class Card {
     return this._card
   }
 
-  _handleImageClick() {
-    const bitPicturePopup = new PopupWithImage(popupSelectors.popupBigPicture)
-    bitPicturePopup.setEventListeners()
-    bitPicturePopup.activatePopup(this._data)
-  }
+  // _handleImageClick() {
+  //   const bigPicturePopup = new PopupWithImage(popupSelectors.popupBigPicture, bigPictureConfig)
+  //   bigPicturePopup.setEventListeners()
+  //   bigPicturePopup.activatePopup(this._data)
+  // }
+
+    _handleImageClick(popup) {
+    popup.setEventListeners()
+    popup.activatePopup(this._data)
+  } 
 
   _isLikedByMe() {
     return this._likes.some(like => like._id === this._userId)
@@ -55,7 +60,7 @@ export default class Card {
 
   _renderLiked() {
     if (this._isLikedByMe()) {
-      this._likeButton.classList.add('elements__like-button_active')
+      this._likeButton.classList.add(this._config.likeButtonActiveState)
     }
   }
 
@@ -68,7 +73,7 @@ export default class Card {
         this._likeCounter.innerText = data.likes.length
       })
       .then(() => {
-        this._likeButton.classList.add('elements__like-button_active')
+        this._likeButton.classList.add(this._config.likeButtonActiveState)
       })
       .catch((err) => {
         console.log('Ошибка: ', err);
@@ -84,7 +89,7 @@ export default class Card {
         this._likeCounter.innerText = data.likes.length
       })
       .then(() => {
-        this._likeButton.classList.remove('elements__like-button_active')
+        this._likeButton.classList.remove(this._config.likeButtonActiveState)
       })
       .catch((err) => {
         console.log('Ошибка: ', err);
@@ -126,16 +131,16 @@ export default class Card {
 
   _setEventListeners() {
 
-    this._cardImage.addEventListener('click', () => {
-      this._handleImageClick();
-    });
+    // this._cardImage.addEventListener('click', () => {
+    //   this._handleImageClick(this);
+    // });
 
     this._likeButton.addEventListener('click', () => {
-      this._handleLikeClick()
+      this._handleLikeClick(this)
     });
 
     this._deleteButton.addEventListener('click', () => {
-      this._handleDeleteClick();
+      this._handleDeleteClick(this);
     });
   }
 

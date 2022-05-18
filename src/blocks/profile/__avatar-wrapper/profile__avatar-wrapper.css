@@ -1,0 +1,11 @@
+.profile__avatar-wrapper {
+  background-image: url(../../../images/myavatar.jpg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 50%;
+}

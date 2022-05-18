@@ -1,5 +1,3 @@
-import { enableValidation } from './FormValidator.js'
-import { validationSettings } from './data.js'
 export default class Popup {
   
   constructor(selector) {

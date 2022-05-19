@@ -39,7 +39,7 @@ export const editUserAvatar = new PopupWithForm(popupSelectors.popupAvatar, (dat
   return api.editAvatar(data['avatar'])
 
     .then((data) => {
-      userInfo.setUserInfo(data.name, data.about, data.avatar)
+      userInfo.setUserInfo(data.name, data.about, data.avatar, data._id)
       userInfo.updateUserInfo()
     })
     .catch((err) => {
@@ -54,7 +54,7 @@ export const newCardPopup = new PopupWithForm(popupSelectors.popupNewCard, (data
     .then((data) => {
       renderCard(data, cardSection)
     })
-    .then((data) => {
+    .then(() => {
       userInfo.updateUserInfo()
     })
     .catch((err) => {
@@ -67,7 +67,7 @@ export const editUserProfile = new PopupWithForm(popupSelectors.popupEditProfile
   return api.changeProfileData(data['first-name'], data['occupation'])
 
     .then((data) => {
-      userInfo.setUserInfo(data.name, data.about, data.avatar)
+      userInfo.setUserInfo(data.name, data.about, data.avatar, data._id)
       userInfo.updateUserInfo()
     })
     .catch((err) => {

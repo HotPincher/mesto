@@ -1,8 +1,8 @@
 export default class FormValidator {
+  
   constructor(validationSettings, formElement) {
     this._config = validationSettings;
     this._formElement = formElement;
-    this._formFieldList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
     this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
     this._buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
   }
@@ -12,23 +12,12 @@ export default class FormValidator {
     this._buttonElement.disabled = true;
   }
 
-  disableAllErrors() {
-    this._formFieldList.forEach((formField) => {
-      const inputElement = formField.querySelector(this._config.inputSelector);
-      this._hideInputError(inputElement);
-    })
-  }
-
-  resetPopup() {
-    this._formElement.reset()
-    this._formElement.querySelectorAll(this._config.inputSelector).forEach(item => {
-      if (item.classList.contains(this._config.inputErrorClass)) {
-        item.classList.remove(this._config.inputErrorClass)
+  clearErrors() {
+    // this._formElement.reset() Перенес в PopupWithForm
+    this._inputList.forEach(field => {
+      if (field.classList.contains(this._config.inputErrorClass)) {
+        this._hideInputError(field)
       }
-    })
-    this._formElement.querySelectorAll(this._config.inputErrorSelector).forEach(item => {
-      item.classList.add(this._config.inputErrorHiddenClass)
-      item.textContent = " "
     })
   }
 
@@ -85,21 +74,4 @@ export default class FormValidator {
     });
     this._setEventListeners();
   };
-
 }
-
-
-/*
-const resetPopup = (formElement) => {
-  formElement.reset()
-  formElement.querySelectorAll(validationSettings.inputSelector).forEach(item => {
-    if (item.classList.contains(validationSettings.inputErrorClass)) {
-      item.classList.remove(validationSettings.inputErrorClass)
-    }
-  })
-  formElement.querySelectorAll(validationSettings.inputErrorSelector).forEach(item => {
-    item.classList.add(validationSettings.inputErrorHiddenClass)
-    item.textContent = " "
-  })
-}
-*/

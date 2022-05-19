@@ -1,6 +1,6 @@
 import Popup from "./Popup.js"
-
 export default class PopupWithImage extends Popup {
+  
   constructor(selector, config) {
     super(selector)
     this._config = config

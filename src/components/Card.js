@@ -1,18 +1,16 @@
-// import PopupWithImage from './PopupWithImage.js'
-// import { bigPictureConfig, popupSelectors, cardSelectors } from '../scripts/data.js'
-import { api, userId } from '../index.js'
-
 export default class Card {
-  constructor({ data }, config, selector) {
+
+  constructor({ data }, config, selector, api, userInfo) {
     this._data = data
     this._config = config
     this._selector = selector
-    this._userId = userId
+    this._userId = userInfo._userId
     this._likes = data.likes
     this._image = data.link
     this._heading = data.name
-    this._ownerId = data.owner._id;
-    this._cardId = data._id;
+    this._ownerId = data.owner._id
+    this._cardId = data._id
+    this._api = api
   }
 
   _getItem() {
@@ -34,7 +32,7 @@ export default class Card {
     this._deleteButton = this._card.querySelector(this._config.deleteButtonSelector)
     this._cardImage.src = this._image;
     this._cardImage.alt = this._heading;
-    this._cardHeading.textContent = this._heading;
+    this._cardHeading.textContent = this._heading
     this._likeCounter.textContent = this._likes.length
     this._renderLiked()
     this._renderDelete()
@@ -43,16 +41,10 @@ export default class Card {
     return this._card
   }
 
-  // _handleImageClick() {
-  //   const bigPicturePopup = new PopupWithImage(popupSelectors.popupBigPicture, bigPictureConfig)
-  //   bigPicturePopup.setEventListeners()
-  //   bigPicturePopup.activatePopup(this._data)
-  // }
-
-    _handleImageClick(popup) {
+  _handleImageClick(popup) {
     popup.setEventListeners()
     popup.activatePopup(this._data)
-  } 
+  }
 
   _isLikedByMe() {
     return this._likes.some(like => like._id === this._userId)
@@ -66,7 +58,7 @@ export default class Card {
 
   _putLike() {
 
-    api.createLikeElement(this._cardId)
+    this._api.createLikeElement(this._cardId)
 
       .then((data) => {
         this._likes = data.likes
@@ -82,7 +74,7 @@ export default class Card {
 
   _removeLike() {
 
-    api.removeLikeElement(this._cardId)
+    this._api.removeLikeElement(this._cardId)
 
       .then((data) => {
         this._likes = data.likes
@@ -116,7 +108,7 @@ export default class Card {
 
   _handleDeleteClick() {
 
-    api.removeCardElement(this._cardId)
+    this._api.removeCardElement(this._cardId)
 
       .then(() => {
         this._renderDelete()
@@ -131,17 +123,12 @@ export default class Card {
 
   _setEventListeners() {
 
-    // this._cardImage.addEventListener('click', () => {
-    //   this._handleImageClick(this);
-    // });
-
     this._likeButton.addEventListener('click', () => {
-      this._handleLikeClick(this)
+      this._handleLikeClick()
     });
 
     this._deleteButton.addEventListener('click', () => {
-      this._handleDeleteClick(this);
+      this._handleDeleteClick();
     });
   }
-
 }

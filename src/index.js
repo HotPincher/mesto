@@ -28,11 +28,12 @@ import {
   bigPictureConfig,
 } from './scripts/data.js'
 
-export let userId = null
+export const formValidators = {}
 export const api = new Api(serverConfig);
 export const userInfo = new UserInfo(accountName, accountJob, avatarImage)
 export const cardSection = new Section(renderCard, '.elements')
 export const bigPicturePopup = new PopupWithImage(popupSelectors.popupBigPicture, bigPictureConfig)
+
 export const editUserAvatar = new PopupWithForm(popupSelectors.popupAvatar, (data) => {
 
   return api.editAvatar(data['avatar'])
@@ -52,6 +53,9 @@ export const newCardPopup = new PopupWithForm(popupSelectors.popupNewCard, (data
 
     .then((data) => {
       renderCard(data, cardSection)
+    })
+    .then((data) => {
+      userInfo.updateUserInfo()
     })
     .catch((err) => {
       console.log('Ошибка. Запрос не выполнен: ', err);
@@ -73,50 +77,48 @@ export const editUserProfile = new PopupWithForm(popupSelectors.popupEditProfile
 
 profileEditButton.addEventListener('click', () => {
   editUserProfile.activatePopup()
-  formValidators["profile-edit"].resetPopup();
+  formValidators["profile-edit"].clearErrors();
   formValidators["profile-edit"].disableSubmit();
-  formValueName.value = accountName.textContent
-  formValueJob.value = accountJob.textContent
+  formValueName.value = userInfo.getUserInfo().name
+  formValueJob.value = userInfo.getUserInfo().job
 })
 
 avatarEditButton.addEventListener('click', () => {
   editUserAvatar.activatePopup()
-
-  const validator = formValidators["avatar-edit"];
-  validator.resetPopup();
-  validator.disableSubmit();
+  formValidators["avatar-edit"].clearErrors();
+  formValidators["avatar-edit"].disableSubmit();
 })
 
 newCardCreatorButton.addEventListener('click', () => {
   newCardPopup.activatePopup()
-  const validator = formValidators["card-edit"];
-  validator.resetPopup();
-  validator.disableSubmit();
+  formValidators["card-edit"].clearErrors();
+  formValidators["card-edit"].disableSubmit();
 })
 
-export function renderCard(dataElement) {
-  const card = new Card({ data: dataElement }, cardConfig, '#elements__item-template');
-  const cardNode = card.createNode()
-  cardSection.addItem(cardNode, 'after')
+function createCard(dataElement) {
+  const card = new Card({ data: dataElement }, cardConfig, '#elements__item-template', api, userInfo);
+  return card
+}
+
+export function renderCard(data) {
+  const cardNode = createCard(data).createNode()
   const cardImage = cardNode.querySelector('.elements__image')
   cardImage.addEventListener('click', () => {
-    card._handleImageClick(bigPicturePopup)
+    cardNode._handleImageClick(bigPicturePopup)
   })
+  cardSection.addItem(cardNode, 'after')
 }
 
 api.acquireAllData()
   .then(([data, cards]) => {
-    userId = data._id
-    userInfo.setUserInfo(data.name, data.about, data.avatar)
+    userInfo.setUserInfo(data.name, data.about, data.avatar, data._id)
+    console.log(data._id)
     userInfo.updateUserInfo()
     cardSection.renderItems(cards)
   })
   .catch(err => {
     console.log('Ошибка: ', err);
   });
-
-
-const formValidators = {}
 
 const enableValidation = (validationSettings) => {
   const formList = Array.from(document.querySelectorAll(validationSettings.formSelector))
@@ -131,6 +133,5 @@ const enableValidation = (validationSettings) => {
 editUserProfile.setEventListeners('Сохранить')
 editUserAvatar.setEventListeners('Сменить аватар')
 newCardPopup.setEventListeners('Создать')
-
 
 enableValidation(validationSettings);

@@ -54,12 +54,6 @@ export const newCardPopup = new PopupWithForm(popupSelectors.popupNewCard, (data
     .then((data) => {
       renderCard(data, cardSection)
     })
-<<<<<<< HEAD
-=======
-    .then(() => {
-      userInfo.updateUserInfo()
-    })
->>>>>>> 9361592da507f25fee40ef4fa8564c4cd15180cc
     .catch((err) => {
       console.log('Ошибка. Запрос не выполнен: ', err);
     });

@@ -1,6 +1,6 @@
 export default class Card {
 
-  constructor({ data }, config, selector, api, userInfo) {
+  constructor({ data }, config, selector, api, userInfo, handleImageClick) {
     this._data = data
     this._config = config
     this._selector = selector
@@ -11,6 +11,7 @@ export default class Card {
     this._ownerId = data.owner._id
     this._cardId = data._id
     this._api = api
+    this._handleImageClick = handleImageClick
   }
 
   _getItem() {
@@ -39,11 +40,6 @@ export default class Card {
     this._setEventListeners()
 
     return this._card
-  }
-
-  _handleImageClick(popup) {
-    popup.setEventListeners()
-    popup.activatePopup(this._data)
   }
 
   _isLikedByMe() {
@@ -122,6 +118,10 @@ export default class Card {
   }
 
   _setEventListeners() {
+
+    this._cardImage.addEventListener('click', () => {
+      this._handleImageClick(this._image, this._heading)
+    })
 
     this._likeButton.addEventListener('click', () => {
       this._handleLikeClick()

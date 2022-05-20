@@ -8,10 +8,10 @@ export default class PopupWithImage extends Popup {
     this._description = this._popup.querySelector(this._config.bigPicturePopupSpanSelector)
   }
 
-  activatePopup(data) {
+  activatePopup(link, name) {
     super.activatePopup()
-    this._image.src = data.link;
-    this._image.alt = data.name;
-    this._description.textContent = data.name;
+    this._image.src = link;
+    this._image.alt = name;
+    this._description.textContent = name;
   }
 }

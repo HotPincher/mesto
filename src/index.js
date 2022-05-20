@@ -39,7 +39,7 @@ export const editUserAvatar = new PopupWithForm(popupSelectors.popupAvatar, (dat
   return api.editAvatar(data['avatar'])
 
     .then((data) => {
-      userInfo.setUserInfo(data.name, data.about, data.avatar)
+      userInfo.setUserInfo(data.name, data.about, data.avatar, data._id)
       userInfo.updateUserInfo()
     })
     .catch((err) => {
@@ -54,9 +54,6 @@ export const newCardPopup = new PopupWithForm(popupSelectors.popupNewCard, (data
     .then((data) => {
       renderCard(data, cardSection)
     })
-    .then((data) => {
-      userInfo.updateUserInfo()
-    })
     .catch((err) => {
       console.log('Ошибка. Запрос не выполнен: ', err);
     });
@@ -67,7 +64,7 @@ export const editUserProfile = new PopupWithForm(popupSelectors.popupEditProfile
   return api.changeProfileData(data['first-name'], data['occupation'])
 
     .then((data) => {
-      userInfo.setUserInfo(data.name, data.about, data.avatar)
+      userInfo.setUserInfo(data.name, data.about, data.avatar, data._id)
       userInfo.updateUserInfo()
     })
     .catch((err) => {
@@ -95,17 +92,18 @@ newCardCreatorButton.addEventListener('click', () => {
   formValidators["card-edit"].disableSubmit();
 })
 
+function handleImageClick (link, name) {
+  bigPicturePopup.setEventListeners()
+  bigPicturePopup.activatePopup(link, name)
+}
+
 function createCard(dataElement) {
-  const card = new Card({ data: dataElement }, cardConfig, '#elements__item-template', api, userInfo);
+  const card = new Card({ data: dataElement }, cardConfig, '#elements__item-template', api, userInfo, handleImageClick);
   return card
 }
 
 export function renderCard(data) {
   const cardNode = createCard(data).createNode()
-  const cardImage = cardNode.querySelector('.elements__image')
-  cardImage.addEventListener('click', () => {
-    cardNode._handleImageClick(bigPicturePopup)
-  })
   cardSection.addItem(cardNode, 'after')
 }
 

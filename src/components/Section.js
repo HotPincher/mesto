@@ -1,6 +1,5 @@
-import { data } from "./data.js";
-
 export default class Section {
+  
   constructor(renderer, containerSelector) {
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
@@ -12,7 +11,7 @@ export default class Section {
     });
   }
 
-  addItem(card) {
-    this._container.prepend(card)
+  addItem(card, location = "before") {
+    location === 'before' ? this._container.append(card) : this._container.prepend(card)
   }
 }

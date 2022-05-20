@@ -1,3 +1,25 @@
+const popupSelectors = {
+  popupAvatar: '#avatarEditPopup',
+  popupNewCard: '#newCardPopup',
+  popupEditProfile: '#profileEditPopup',
+  popupBigPicture: '#big-picture-popup'
+}
+
+const cardConfig = {
+  cardImageSelector : '.elements__image',
+  cardHeadingSelector : '.elements__heading',
+  likeCounterSelector : '.elements__like-counter',
+  likeButtonSelector : '.elements__like-button',
+  deleteButtonSelector: '.elements__delete-button',
+  likeButtonActiveState: 'elements__like-button_active',
+}
+
+const bigPictureConfig = {
+  // bigPicturePopupSelector : '#big-picture-popup',
+  bigPicturePopupImageSelector: '.big-picture__image',
+  bigPicturePopupSpanSelector: '.big-picture__tag',
+}
+
 const serverConfig = {
   baseUrl: "https://nomoreparties.co/v1/plus-cohort-8",
   headers: {
@@ -8,8 +30,8 @@ const serverConfig = {
 
 // PAGE LAYOUT
 
-const currentAccountName = document.querySelector('.profile__title')
-const currentAccountProfession = document.querySelector('.profile__subtitle')
+const accountName = document.querySelector('.profile__title')
+const accountJob = document.querySelector('.profile__subtitle')
 
 // BUTTONS
 
@@ -28,7 +50,7 @@ const popupAccountEditModifier = document.querySelector('#profileEditPopup')
 // EDITING AVATAR
 
 const popupAvatarEditModifier = document.querySelector('#avatarEditPopup')
-const avatarImage = document.querySelector('.profile__avatar-overlay')
+const avatarImage = document.querySelector('.profile__avatar-wrapper')
 
 // NEW CARD POPUP
 
@@ -41,17 +63,17 @@ const cardFromTemplate = document.querySelector('#elements__item-template').cont
 
 // BIG PICTURE POPUP
 
-const bigPicturePopup = document.querySelector('#big-picture-popup')
-const bigPicturePopupImage = bigPicturePopup.querySelector('.big-picture__image')
-const bigPicturePopupSpan = bigPicturePopup.querySelector('.big-picture__tag')
+// const bigPicturePopup = document.querySelector('#big-picture-popup')
+// const bigPicturePopupImage = bigPicturePopup.querySelector('.big-picture__image')
+// const bigPicturePopupSpan = bigPicturePopup.querySelector('.big-picture__tag')
 
 // FORMS
 
 const profileEditFormCredentials = document.forms['profile-edit']
 const profileNewCardFormCredentials = document.forms['card-edit']
 const profileAvatarEditFormCredentials = document.forms['avatar-edit']
-const profileEditFormInitialValue1 = profileEditFormCredentials.querySelector('#name-input')
-const profileEditFormInitialValue2 = profileEditFormCredentials.querySelector('#description-input')
+const formValueName = profileEditFormCredentials.querySelector('#name-input')
+const formValueJob = profileEditFormCredentials.querySelector('#description-input')
 const newCardPlace = document.querySelector('#place-input')
 const newCardUrl = document.querySelector('#url-input')
 const avatarUrl = document.querySelector('#avatar-input')
@@ -69,8 +91,9 @@ const validationSettings = {
 }
 
 export {
-  currentAccountName,
-  currentAccountProfession,
+  popupSelectors,
+  accountName,
+  accountJob,
   profileEditButton,
   avatarEditButton,
   newCardCreatorButton,
@@ -80,18 +103,20 @@ export {
   popupAccountNewCardModifier,
   cardContainer,
   cardFromTemplate,
-  bigPicturePopup,
-  bigPicturePopupImage,
-  bigPicturePopupSpan,
+  bigPictureConfig,
+  // bigPicturePopup,
+  // bigPicturePopupImage,
+  // bigPicturePopupSpan,
   profileEditFormCredentials,
   profileAvatarEditFormCredentials,
   profileNewCardFormCredentials,
-  profileEditFormInitialValue1,
-  profileEditFormInitialValue2,
+  formValueName,
+  formValueJob,
   newCardPlace,
   newCardUrl,
   avatarUrl,
   avatarImage,
   validationSettings,
   serverConfig,
+  cardConfig,
 }

@@ -1,157 +1,135 @@
+// В подготовке проекта участвовали :
+// Александр Панькин
+// Павел Сенчуров
+
+
 import './styles/index.css';
-import { renderElementCard, updateLikes, updateDelete } from './scripts/renderCard.js'
-import { activatePopup, removePopup } from './scripts/popup.js'
-import Api from './scripts/Api.js'
-import UserInfo from './scripts/UserInfo';
+import Api from './components/Api.js'
+import UserInfo from './components/UserInfo'
+import Card from './components/Card.js'
+import Section from './components/Section.js'
+import PopupWithForm from './components/PopupWithForm.js';
+import PopupWithImage from './components/PopupWithImage';
+import FormValidator from './components/FormValidator.js';
+
 import {
-  currentAccountName,
-  currentAccountProfession,
+  popupSelectors,
+  accountName,
+  accountJob,
   avatarImage,
   profileEditButton,
   avatarEditButton,
   newCardCreatorButton,
-  popupAccountEditModifier,
-  popupAvatarEditModifier,
-  popupAccountNewCardModifier,
-  popupRemovers,
-  profileEditFormCredentials,
-  profileAvatarEditFormCredentials,
-  profileNewCardFormCredentials,
-  profileEditFormInitialValue1,
-  profileEditFormInitialValue2,
-  newCardPlace,
-  newCardUrl,
-  cardContainer,
+  formValueName,
+  formValueJob,
+  validationSettings,
+  serverConfig,
+  cardConfig,
+  bigPictureConfig,
 } from './scripts/data.js'
-import { handleAvatarForm, changeProfileCredentials, createNewCardCredentials } from './scripts/formHandlers.js'
-import { disableSubmit, resetPopup } from './scripts/validateForm.js'
 
-const api = new Api ();
-const userInfo = new UserInfo (currentAccountName, currentAccountProfession);
+export const formValidators = {}
+export const api = new Api(serverConfig);
+export const userInfo = new UserInfo(accountName, accountJob, avatarImage)
+export const cardSection = new Section(renderCard, '.elements')
+export const bigPicturePopup = new PopupWithImage(popupSelectors.popupBigPicture, bigPictureConfig)
+
+export const editUserAvatar = new PopupWithForm(popupSelectors.popupAvatar, (data) => {
+
+  return api.editAvatar(data['avatar'])
+
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about, data.avatar, data._id)
+      userInfo.updateUserInfo()
+    })
+    .catch((err) => {
+      console.log('Ошибка. Запрос не выполнен: ', err);
+    });
+})
+
+export const newCardPopup = new PopupWithForm(popupSelectors.popupNewCard, (data) => {
+
+  return api.createCardElement(data['place'], data['url'])
+
+    .then((data) => {
+      renderCard(data, cardSection)
+    })
+    .catch((err) => {
+      console.log('Ошибка. Запрос не выполнен: ', err);
+    });
+})
+
+export const editUserProfile = new PopupWithForm(popupSelectors.popupEditProfile, (data) => {
+
+  return api.changeProfileData(data['first-name'], data['occupation'])
+
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about, data.avatar, data._id)
+      userInfo.updateUserInfo()
+    })
+    .catch((err) => {
+      console.log('Ошибка. Запрос не выполнен: ', err);
+    });
+})
 
 profileEditButton.addEventListener('click', () => {
-  activatePopup(popupAccountEditModifier)
-  disableSubmit(popupAccountEditModifier)
-  resetPopup(profileEditFormCredentials)
-  profileEditFormInitialValue1.setAttribute('value', currentAccountName.textContent)
-  profileEditFormInitialValue2.setAttribute('value', currentAccountProfession.textContent)
-})
-
-profileEditFormCredentials.addEventListener('submit', () => {
-  changeProfileCredentials(profileEditFormCredentials)
-})
-
-avatarEditButton.addEventListener('mouseover', function (evt) {
-  evt.target.closest('.profile__avatar-swapper').classList.add('profile__avatar-swapper_active')
-  document.querySelector('.profile__avatar-swapper-icon').classList.add('profile__avatar-swapper-icon_active')
-})
-
-avatarEditButton.addEventListener('mouseout', function (evt) {
-  evt.target.closest('.profile__avatar-swapper').classList.remove('profile__avatar-swapper_active')
-  document.querySelector('.profile__avatar-swapper-icon').classList.remove('profile__avatar-swapper-icon_active')
+  editUserProfile.activatePopup()
+  formValidators["profile-edit"].clearErrors();
+  formValidators["profile-edit"].disableSubmit();
+  formValueName.value = userInfo.getUserInfo().name
+  formValueJob.value = userInfo.getUserInfo().job
 })
 
 avatarEditButton.addEventListener('click', () => {
-  activatePopup(popupAvatarEditModifier)
-  disableSubmit(popupAvatarEditModifier)
-  resetPopup(profileAvatarEditFormCredentials)
-})
-
-profileAvatarEditFormCredentials.addEventListener('submit', () => {
-  handleAvatarForm(profileAvatarEditFormCredentials)
+  editUserAvatar.activatePopup()
+  formValidators["avatar-edit"].clearErrors();
+  formValidators["avatar-edit"].disableSubmit();
 })
 
 newCardCreatorButton.addEventListener('click', () => {
-  activatePopup(popupAccountNewCardModifier)
-  disableSubmit(popupAccountNewCardModifier)
-  resetPopup(profileNewCardFormCredentials)
+  newCardPopup.activatePopup()
+  formValidators["card-edit"].clearErrors();
+  formValidators["card-edit"].disableSubmit();
 })
 
-profileNewCardFormCredentials.addEventListener('submit', () => {
-  const currentInputPlace = newCardPlace.value
-  const currentInputUrl = newCardUrl.value
-  createNewCardCredentials(currentInputUrl, currentInputPlace)
-})
-
-popupRemovers.forEach(popup => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) {
-      removePopup(popup)
-    }
-  })
-})
-
-
-let userId = null
-
-function handleLikeClick(cardElement, cardId, isLike) {
-
-  api.createLikeElement(cardId, isLike)
-    .then((dataCards) => {
-      updateLikes(cardElement, dataCards.likes, userId)
-    })
-    .catch((err) => {
-      console.log('Ошибка: ', err);
-    })
+function handleImageClick (link, name) {
+  bigPicturePopup.activatePopup(link, name)
 }
 
-function handleDeleteClick(cardElement, cardId, elementId) {
-
-  api.removeCardElement(cardId, elementId)
-    .then(() => {
-      updateDelete(cardElement, cardId, elementId)
-      cardElement.remove()
-    })
-    .catch((err) => {
-      console.log('Ошибка: ', err);
-    })
+function createCard(dataElement) {
+  const card = new Card({ data: dataElement }, cardConfig, '#elements__item-template', api, userInfo, handleImageClick);
+  return card
 }
 
-const prependCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId) => {
-  const cardCaller = renderElementCard(
-    cardLink, 
-    cardTitle, 
-    likes, 
-    elementId, 
-    ownerIdLikes, 
-    userId, 
-    ownerId, 
-    handleLikeClick, 
-    handleDeleteClick)
-  cardContainer.prepend(cardCaller)
-}
-
-const appendCard = (cardLink, cardTitle, likes, elementId, ownerIdLikes, userId, ownerId) => {
-  const cardCaller = renderElementCard(
-    cardLink, 
-    cardTitle, 
-    likes, 
-    elementId, 
-    ownerIdLikes, 
-    userId, 
-    ownerId, 
-    handleLikeClick, 
-    handleDeleteClick)
-  cardContainer.append(cardCaller)
+export function renderCard(data) {
+  const cardNode = createCard(data).createNode()
+  cardSection.addItem(cardNode, 'after')
 }
 
 api.acquireAllData()
   .then(([data, cards]) => {
-    avatarImage.src = data.avatar
-    userInfo.setUserInfo(data.name, data.about)
+    userInfo.setUserInfo(data.name, data.about, data.avatar, data._id)
+    console.log(data._id)
     userInfo.updateUserInfo()
-    cards.forEach(card => {
-      userId = data._id
-      const ownerId = card.owner._id;
-      const elementId = card._id;
-      const ownerIdLikes = [];
-      const likes = card.likes;
-      likes.forEach(element => {ownerIdLikes.push(element._id)})
-      appendCard(card.link, card.name, likes, userId, ownerId, elementId, ownerIdLikes)
-    })
+    cardSection.renderItems(cards)
   })
   .catch(err => {
     console.log('Ошибка: ', err);
   });
 
-export { prependCard }
+const enableValidation = (validationSettings) => {
+  const formList = Array.from(document.querySelectorAll(validationSettings.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(validationSettings, formElement)
+    const formName = formElement.getAttribute('name')
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+editUserProfile.setEventListeners('Сохранить')
+editUserAvatar.setEventListeners('Сменить аватар')
+newCardPopup.setEventListeners('Создать')
+bigPicturePopup.setEventListeners()
+
+enableValidation(validationSettings);

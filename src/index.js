@@ -93,7 +93,6 @@ newCardCreatorButton.addEventListener('click', () => {
 })
 
 function handleImageClick (link, name) {
-  bigPicturePopup.setEventListeners()
   bigPicturePopup.activatePopup(link, name)
 }
 
@@ -131,5 +130,6 @@ const enableValidation = (validationSettings) => {
 editUserProfile.setEventListeners('Сохранить')
 editUserAvatar.setEventListeners('Сменить аватар')
 newCardPopup.setEventListeners('Создать')
+bigPicturePopup.setEventListeners()
 
 enableValidation(validationSettings);
